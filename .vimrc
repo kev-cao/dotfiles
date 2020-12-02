@@ -15,6 +15,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set autoindent
 
 " Disable logging web-indenx
 let g:js_indent_log = 0

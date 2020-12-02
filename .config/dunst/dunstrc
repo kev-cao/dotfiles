@@ -239,6 +239,7 @@
     mouse_left_click = close_current
     mouse_middle_click = do_action
     mouse_right_click = close_all
+    timeout = 6
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -327,7 +328,7 @@
 # Instead of the appname filter, it's recommended to use the desktop_entry filter.
 # GLib based applications export their desktop-entry name. In comparison to the appname,
 # the desktop-entry won't get localized.
-#
+
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
 # setting the "script" option.
