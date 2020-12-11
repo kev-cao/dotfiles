@@ -56,9 +56,13 @@ gaps outer $gapOut
 # smart_gaps on
 
 # >> Resizing Gaps <<
+# %%hotkey: Increase gaps%%
 bindsym $mod+g gaps inner current plus 5
+# %%hotkey: Decrease gaps%%
 bindsym $mod+Shift+g gaps inner current minus 5
+# %%hotkey: Reset gaps to default%%
 bindsym $mod+Ctrl+g gaps inner current set $gapIn; gaps outer current set $gapOut
+# %%hotkey: Remove gaps%%
 bindsym $mod+Ctrl+Shift+g gaps inner current set 0; gaps outer current set 0
 
 
@@ -140,10 +144,13 @@ floating_modifier $mod
 
 
 # >>> Kill focused window <<<
+# %%hotkey: Kill focused window%%
 bindsym $mod+Shift+q kill
 
 # >>> Scratchpad <<<
+# %%hotkey: Show scratchpad%%
 bindsym $mod+minus scratchpad show
+# %%hotkey: Move focused window to scratchpad%%
 bindsym $mod+Shift+minus move scratchpad
 
 # change focus
@@ -167,28 +174,37 @@ bindsym $mod+Ctrl+Shift+l move right 80 px
 
 # >>> Window Creation Orientation <<<
 # split in horizontal orientation
+# %%hotkey: Split focused window horizontal%%
 bindsym $mod+slash split v
 
 # split in vertical orientation
+# %%hotkey: Split focused window vertical%%
 bindsym $mod+apostrophe split h
 
 # change container layout (stacked, tabbed, toggle split)
+# %%hotkey: Change to stacking layout%%
 bindsym $mod+s layout stacking
+# %%hotkey: Change to tabbed layout%%
 bindsym $mod+w layout tabbed
+# %%hotkey: Change to split layout%%
 bindsym $mod+e layout toggle split
 
 
 
 # enter fullscreen mode for the focused container
+# %%hotkey: Toggle focused window fullscreen%%
 bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating
+# %%hotkey: Toggle focused window floating%%
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
+# %%hotkey: Toggle focus between tiling/floating windows%%
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
+# %%hotkey: Focus parent container%%
 bindsym $mod+a focus parent
 
 # focus the child container
@@ -237,26 +253,40 @@ mode "resize" {
 }
 
 
+# %%hotkey: Enter resize mode%%
 bindsym $mod+r mode "resize"
 
 # Paper mode
+# %%hotkey: Toggle focused window paper mode%%
 bindsym $mod+Ctrl+space floating toggle; resize set 700px 975px; $center
 
 # -----------------------------------------------------
 # -------------- Application Launch -------------------
 # -----------------------------------------------------
+
+# %%hotkey: Show i3 hotkeys%%
+bindsym $mod+F1 exec --no-startup-id dmenu_hotkeys i3 rofi
+
+# %%hotkey: Rofi Definitions%%
+bindsym $mod+Shift+D exec --no-startup-id rofi_dictionary
+
 # >>> Start Web Browser <<<
+# %%hotkey: Launch Brave browser%%
 bindsym $mod+Shift+v exec --no-startup-id $browser
 # Start in incognito
+# %%hotkey: Launch Brave browser in incognito%%
 bindsym $mod+Shift+n exec --no-startup-id $browser --incognito
 
 # >>> Start a terminal <<<
+# %%hotkey: Launch terminal%%
 bindsym $mod+Return exec $term
 
 # >>> Start terminal in current dir <<<
+# %%hotkey: Launch terminal in current directory%%
 bindsym $mod+Shift+Return exec $term -cd "`xcwd`"
 
 # >>> Ranger File Manager <<<
+# %%hotkey: Launch Ranger%%
 bindsym $mod+shift+f exec --no-startup-id $term -e $fm
 
 
@@ -265,13 +295,17 @@ bindsym $mod+shift+f exec --no-startup-id $term -e $fm
 # -----------------------------------------------------
 # >>> Rofi (dmenu replacement) <<<
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -font "Helvetica Neue 15" '
+# %%hotkey: Show rofi menu%%
 bindsym $mod+d exec --no-startup-id rofi -show run
 
 # reload the configuration file
+# %%hotkey: Reload i3 config%%
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# %%hotkey: Restart i3%%
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
+# %%hotkey: Exit i3%%
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
@@ -280,6 +314,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # bindsym XF86AudioRaiseVolume exec ~/audio.sh --up
 
 # >>> Lock Screen <<<
+# %%hotkey: Go to lockscreen.%%
 bindsym $mod+Escape exec betterlockscreen -l
 
 #--- Pulse Audio Controls ---#
