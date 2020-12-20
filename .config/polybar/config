@@ -69,7 +69,6 @@ tray-padding = 4
 ;------------------------------------------------------------
 [module/network]
 type = internal/network
-ping-interval = 3
 
 [module/xwindow]
 type = internal/xwindow
@@ -212,7 +211,7 @@ format-connected-prefix-background = ${colors.seagreen}
 format-connected-prefix-foreground = ${colors.module-foreground}
 
 label-connected = %essid%
-label-connected-maxlen = 10
+label-connected-maxlen = 15
 label-connected-background = ${colors.module-background}
 label-connected-foreground = ${colors.module-foreground}
 label-connected-padding = 1

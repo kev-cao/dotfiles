@@ -8,8 +8,8 @@ source ~/.bash_ps1
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 #####################################################################
-# Disable automatical venv prompt
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# Set node local package directory.
+NPM_PACKAGES="${HOME}/.npm-packages"
 
 #####################################################################
 
@@ -25,3 +25,5 @@ export VISUAL=vim
 # Path Variables
 PATH="$JAVA_HOME/bin:$PATH"
 PATH="$PATH:/home/kevin/.local/bin"
+PATH="$PATH:/$NPM_PACKAGES/bin"
+MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"

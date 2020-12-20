@@ -1,5 +1,8 @@
 #!/bin/bash
 # PS1 Setup
+# Disable automatical venv prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 function prompt_cmd () {
   LAST_STATUS=$?
   PS1="┌─\`if [ \$(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then echo [\[\e[32m\]git\[\e[0m\]]; else echo ─────; fi\`\[\e[0m\]──[\[\e[1m\]"

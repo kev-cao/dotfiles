@@ -21,6 +21,7 @@
 !/.config/polybar/
 !/.config/rofi/
 !/.config/ranger/
+!/.scripts/
 
 # Then let Git track the files in the directories.
 !/.config/dunst/*
