@@ -13,7 +13,7 @@ if [ $? = 0 ]; then
     MONITOR_PORT=`xrandr -q | grep -E "(HDMI-0|DP-0) connected" | grep -E "HDMI-0|DP-0" --only-matching`
     xrandr --output eDP-1-1 --auto --primary
     xrandr --output $MONITOR_PORT --auto
-    xrandr --output $MONITOR_PORT --left-of eDP-1-1
+    xrandr --output $MONITOR_PORT --right-of eDP-1-1
     xrandr --output $MONITOR_PORT --rotate normal
   fi
 fi

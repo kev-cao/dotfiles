@@ -10,7 +10,7 @@ hi SignColumn ctermbg=NONE guibg=NONE
 hi LineNr term=bold cterm=NONE ctermfg=74 ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 hi Comment cterm=italic
 
-set number relativenumber
+set relativenumber number
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
