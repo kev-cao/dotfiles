@@ -1,0 +1,304 @@
+# -----------------------------------------------------
+# --------------- Setting Constants -------------------
+# -----------------------------------------------------
+# >>> Colors <<<
+set_from_resource $act i3wm.act #00BCD4
+set_from_resource $ina i3wm.ina #222d32
+set_from_resource $red i3wm.red #FF5252
+
+# -----------------------------------------------------
+# ------------ Workspace Configurations ---------------
+# -----------------------------------------------------
+
+# >>> Workspaces Names <<<
+set $ws1 workspace "1"
+set $ws2 workspace "2"
+set $ws3 workspace "3"
+set $ws4 workspace "4"
+set $ws5 workspace "5"
+set $ws6 workspace "6"
+set $ws7 workspace "7"
+set $ws8 workspace "8"
+set $ws9 workspace "9"
+set $ws10 workspace "10"
+
+# >>> Windows button <<<
+set $mod Mod4
+
+# -----------------------------------------------------
+# --------------- Auto Launch Exec --------------------
+# -----------------------------------------------------
+# Starting things with i3
+# exec --no-startup-id xcompmgr -C &    # Bare compositor to allow transparency
+for_window [class="yakuake"] floating enable
+
+# >>> Load Xresources <<<
+exec xrdb ~/.Xresources
+
+# Wallpaper
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/autumn.jpg
+
+# Compositor (Animations, Shadows, Transparency)
+exec --no-startup-id compton -cCFb --backend glx --vsync
+
+# Run polybar
+exec_always --no-startup-id ~/.scripts/polybar.sh &
+
+# Run notification manager.
+exec_always --no-startup-id dunst
+
+# Autorun my scripts
+exec_always --no-startup-id ~/.scripts/.remap_keys.sh &
+
+
+# -----------------------------------------------------
+# --------------- Setting up i3Gaps -------------------
+# -----------------------------------------------------
+
+set $gapIn 15
+set $gapOut 15
+gaps inner $gapIn
+gaps outer $gapOut
+# smart_gaps on
+
+# >> Resizing Gaps <<
+bindsym $mod+g gaps inner current plus 5
+bindsym $mod+Shift+g gaps inner current minus 5
+bindsym $mod+Ctrl+g gaps inner current set $gapIn; gaps outer current set $gapOut
+bindsym $mod+Ctrl+Shift+g gaps inner current set 0; gaps outer current set 0
+
+
+
+
+# -----------------------------------------------------
+# -------------- Windows Configurations ---------------
+# -----------------------------------------------------
+
+# >>> Remove title bar and set border <<<
+smart_borders on
+for_window [class="^.*"] border pixel 3
+for_window [class=".*"] border pixel 3
+
+
+# Border colors          border  bg     text    indic
+client.focused           $act    $act   $ina    $act
+client.focused_inactive  $ina    $ina   $act    $ina
+client.unfocused         $ina    $ina   $act    $ina
+client.urgent            $red    $red   $ina    $red
+
+
+# >>> Window titles font <<<
+font pango:Hack
+
+
+# >>> Avoid tiling for stuff <<<
+for_window [instance="float"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# for_window [class="(?i)VirtualBox" title="(?i)Manager"] floating enable
+# for_window [class="(?i)VirtualBox"] floating enable
+# for_window [class="(?i)blueman"] floating enable
+# for_window [class="(?i)qemu-system"] floating enable
+
+for_window [instance="__scratchpad"] floating enable
+
+# Enable floating for pulse audio volume control.
+for_window [class="Pavucontrol"] floating enable; border none
+
+# Temporary for AI
+for_window [class="Grocery Run"] floating disable, tiling enable, no_focus
+
+assign [class="Grocery Run"] $ws2
+
+# -----------------------------------------------------
+# -------------- KDE Plasma Integration ---------------
+# -----------------------------------------------------
+
+# Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everything)
+# exec --no-startup-id wmctrl -c Plasma
+# for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
+
+
+
+# -----------------------------------------------------
+# ---------------- Maneuverability --------------------
+# -----------------------------------------------------
+# >>> Use Mouse+$mod to drag floating windows <<<
+floating_modifier $mod
+
+
+# >>> Kill focused window <<<
+bindsym $mod+Shift+q kill
+
+# >>> Scratchpad <<<
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+
+# >>> Window Creation Orientation <<<
+# split in horizontal orientation
+bindsym $mod+slash split v
+
+# split in vertical orientation
+bindsym $mod+apostrophe split h
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 $ws1
+bindsym $mod+2 $ws2
+bindsym $mod+3 $ws3
+bindsym $mod+4 $ws4
+bindsym $mod+5 $ws5
+bindsym $mod+6 $ws6
+bindsym $mod+7 $ws7
+bindsym $mod+8 $ws8
+bindsym $mod+9 $ws9
+bindsym $mod+0 $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to $ws1
+bindsym $mod+Shift+2 move container to $ws2
+bindsym $mod+Shift+3 move container to $ws3
+bindsym $mod+Shift+4 move container to $ws4
+bindsym $mod+Shift+5 move container to $ws5
+bindsym $mod+Shift+6 move container to $ws6
+bindsym $mod+Shift+7 move container to $ws7
+bindsym $mod+Shift+8 move container to $ws8
+bindsym $mod+Shift+9 move container to $ws9
+bindsym $mod+Shift+0 move container to $ws10
+
+# Move focus between screens
+#bindsym $mod+Alt+h focus output left
+#bindsym $mod+Alt+Left focus output left
+#bindsym $mod+Alt+l focus output right
+#bindsym $mod+Alt+Right focus output right
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 5 ppt
+    bindsym j resize grow height 10 px or 5 ppt
+    bindsym k resize shrink height 10 px or 5 ppt
+    bindsym l resize grow width 10 px or 5 ppt
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+bindsym $mod+r mode "resize"
+
+# i3bar
+#bar {
+#        verbose yes
+#        position bottom 
+#        status_command i3blocks
+#        i3bar_command i3bar -t
+#        colors {
+#          statusline #ffffff
+#          background $transparent
+#        }
+#}
+
+
+
+# -----------------------------------------------------
+# -------------- Application Launch -------------------
+# -----------------------------------------------------
+# >>> Start Web Browser <<<
+bindsym $mod+Shift+v exec --no-startup-id brave
+
+# >>> Start a terminal <<<
+bindsym $mod+Return exec urxvt
+
+# >>> Ranger File Manager <<<
+bindsym $mod+shift+f exec --no-startup-id urxvt -e ranger
+
+
+
+# -----------------------------------------------------
+# ----------------- Action Hotkeys --------------------
+# -----------------------------------------------------
+# >>> Rofi (dmenu replacement) <<<
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -font "Helvetica Neue 15" '
+# bindsym $mod+space exec rofi -show run
+
+# >>> Screenshot (now provided by Plasma) <<<
+bindsym Print exec --no-startup-id spectacle
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+# Audio controls (now provided by Plasma)
+# bindsym XF86AudioLowerVolume exec ~/audio.sh --down
+# bindsym XF86AudioRaiseVolume exec ~/audio.sh --up
+
+# >>> Lock Screen <<<
+bindsym $mod+Escape exec betterlockscreen -l
+
+#--- Pulse Audio Controls ---#
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+
+#-- Sreen brightness controls --#
+bindsym $mod+F4 exec sudo brightnessctl set +5% # increase screen brightness
+bindsym $mod+F3 exec sudo brightnessctl set 5%- # decrease screen brightness
+
+#-- Toggle Touchpad --#
+bindsym $mod+F10 exec bash ~/.scripts/touchpadOnOff.sh
