@@ -6,10 +6,10 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 function prompt_cmd () {
   LAST_STATUS=$?
   PS1="┌─\`if [ \$(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then echo [\[\e[32m\]git\[\e[0m\]]; else echo ─────; fi\`\[\e[0m\]──[\[\e[1m\]"
-if [ $LAST_STATUS = 0 ]; then
-     PS1+="\[\e[36m\]"
+  if [ $LAST_STATUS = 0 ]; then
+    PS1+="\[\e[36m\]"
   else
-     PS1+="\[\e[31m\]"
+    PS1+="\[\e[31m\]"
   fi
 
   PS1+="\u@Arch\[\e[0m\]]─────[\[\e[1;34m\]\W${VENV}\[\e[0m\]]─────[\[\e[1;97m\]\D{%r}\e[0m\]]\n└─╼ "
@@ -32,4 +32,4 @@ function ps1_func () {
 }
 
 export PROMPT_COMMAND=ps1_func
-#PS1="┌─\`if [ \$(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then echo [\[\e[32m\]git\[\e[0m\]]; else echo ─────; fi\`\[\e[0m\]──[\`if [ \$? = 0 ]; then echo \[\e[1;36m\]; else echo \[\e[1;31m\]; fi\`\u@Arch\[\e[0m\]]─────[\[\e[1;34m\]\W\[\e[0m\]]─────[\[\e[1;97m\]\D{%r}\e[0m\]]\n└─╼ "
+# PS1="┌─\`if [ \$(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then echo [\[\e[32m\]git\[\e[0m\]]; else echo ─────; fi\`\[\e[0m\]──[\`if [ \$? = 0 ]; then echo \[\e[1;36m\]; else echo \[\e[1;31m\]; fi\`\u@Arch\[\e[0m\]]─────[\[\e[1;34m\]\W\[\e[0m\]]─────[\[\e[1;97m\]\D{%r}\e[0m\]]\n└─╼ "

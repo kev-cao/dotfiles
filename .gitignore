@@ -38,6 +38,8 @@
 !/.bash_aliases
 !/.bash_ps1
 !/.bashrc
+!/.zshrc
+!/.zshenv
 !/.Xresources
 !/.vimrc
 !/.xinitrc
