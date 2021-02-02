@@ -52,22 +52,22 @@ XTerm.termName: xterm-256color
 ! Base16 Tomorrow Night
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
-#define base00 #1d1f21
-#define base01 #282a2e
-#define base02 #373b41
-#define base03 #969896
-#define base04 #b4b7b4
-#define base05 #c5c8c6
-#define base06 #e0e0e0
-#define base07 #ffffff
-#define base08 #cc6666
-#define base09 #de935f
-#define base0A #f0c674
-#define base0B #b5bd68
-#define base0C #8abeb7
-#define base0D #81a2be
-#define base0E #b294bb
-#define base0F #a3685a
+#define base00 #060C17
+#define base01 #3B4B85
+#define base02 #635A94
+#define base03 #9571A6
+#define base04 #E85C83
+#define base05 #7D80A5
+#define base06 #A887B7
+#define base07 #cfc0da
+#define base08 #908698
+#define base09 #3B4B85
+#define base0A #635A94
+#define base0B #9571A6
+#define base0C #E85C83
+#define base0D #7D80A5
+#define base0E #A887B7
+#define base0F #cfc0da
 
 *foreground:   base05
 #ifdef background_opacity
@@ -121,9 +121,9 @@ URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
 URxvt.depth: 24
 URxvt.transparent: false
-URxvt.shading: 20
+URxvt.shading: 10
 URxvt.tintColor: white
-URxvt.background: #1b1d1e
+URxvt.background: rgba:0000/0000/0000/c800 
 
 ## Urxvt extensions
 URxvt.perl-ext-common: default,clipboard,resize-font

@@ -121,10 +121,10 @@ exec xrdb ~/.Xresources
 # Flameshot
 exec_always --no-startup-id flameshot
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/japan_alley.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/oneplus.jpeg
 
 # Compositor (Animations, Shadows, Transparency)
-# exec_always --no-startup-id picom --vsync --backend xrender -cCfb
+exec_always --no-startup-id picom --vsync --experimental-backends
 
 # Run polybar
 exec_always --no-startup-id ~/.scripts/polybar.sh &
@@ -296,7 +296,7 @@ bindsym $mod+shift+f exec --no-startup-id $term -e $fm
 # >>> Rofi (dmenu replacement) <<<
 #bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu -font "Helvetica Neue 15" '
 # %%hotkey: Show rofi menu%%
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 
 # reload the configuration file
 # %%hotkey: Reload i3 config%%

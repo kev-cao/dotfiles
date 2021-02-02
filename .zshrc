@@ -6,6 +6,11 @@ ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
 
+
+#####################################################################
+# Wal
+(cat ~/.cache/wal/sequences &)
+
 [[ $- != *i* ]] && return
 
 #####################################################################
@@ -31,4 +36,3 @@ function gitac() {
   git add --all &&
     git commit -m "$1"
 }
-
