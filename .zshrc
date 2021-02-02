@@ -2,10 +2,14 @@
 # ~/.zshrc
 #
 # If not running interactively, don't do anything
+
+#####################################################################
+# zsh Options
 ZSH=/usr/share/oh-my-zsh/
 ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
 
+SAVEHIST=1000
 
 #####################################################################
 # Wal
