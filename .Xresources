@@ -105,10 +105,10 @@ XTerm.termName: xterm-256color
 *color21:      base06
 
 !! URxvt Appearance
-URxvt.font: xft:HasklugNerdFontMono:style=Regular:size=13
-URxvt.boldFont: xft:HasklugNerdFontMono:style=Bold:size=13
-URxvt.italicFont: xft:HasklugNerdFontMono:style=Italic:size=13
-URxvt.boldItalicFont: xft:HasklugNerdFontMono:style=Bold Italic:size=13
+URxvt.font: xft:Source Code Pro for Powerline:style=Regular:size=13
+URxvt.boldFont: xft:Source Code Pro for Powerline:style=Bold:size=13
+URxvt.italicFont: xft:Source Code Pro for Powerline:style=Italic:size=13
+URxvt.boldItalicFont: xft:Source Code Pro for Powerline:style=Bold Italic:size=13
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
