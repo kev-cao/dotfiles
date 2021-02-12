@@ -9,7 +9,5 @@ alias landscape='~/./.scripts/orient_monitors_landscape.sh'
 alias portrait='~/./.scripts/orient_monitors_portrait.sh'
 alias pulsesecure="sudo openconnect -b --cafile /etc/ssl/certs/ca-certificates.crt --juniper --no-dtls https://vpn.iu.edu -u kevcao"
 alias liveserver="browser-sync start --server --files ."
-alias p465="cd ~/Documents/classes/csci_p465_fall20/p465-group-1"
-alias herokusql="heroku pg:psql postgresql-deep-67622 --app instructed"
 alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 alias java8="/usr/lib/jvm/java-8-openjdk/bin/java"

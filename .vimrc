@@ -36,7 +36,6 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 
-
 " Colorscheme settings.
 " colorscheme space_vim_theme
 hi Normal ctermbg=NONE guibg=NONE
