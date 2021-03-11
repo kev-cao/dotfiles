@@ -11,6 +11,9 @@ source $ZSH/oh-my-zsh.sh
 
 SAVEHIST=1000
 
+# Vim mode
+bindkey -v
+
 #####################################################################
 # Wal
 (cat ~/.cache/wal/sequences &)

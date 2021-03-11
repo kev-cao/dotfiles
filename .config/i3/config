@@ -123,11 +123,11 @@ exec_always --no-startup-id flameshot
 # Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/oneplus.jpeg
 
-# Compositor (Animations, Shadows, Transparency)
-exec_always --no-startup-id picom --vsync --experimental-backends
-
 # Run polybar
 exec_always --no-startup-id ~/.scripts/polybar.sh &
+
+# Compositor (Animations, Shadows, Transparency)
+exec_always --no-startup-id picom --vsync --experimental-backends
 
 # Run notification manager.
 exec_always --no-startup-id dunst
