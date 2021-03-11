@@ -119,11 +119,11 @@ URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
-URxvt.depth: 24
+URxvt.depth: 32
 URxvt.transparent: false
 URxvt.shading: 10
 URxvt.tintColor: white
-URxvt.background: rgba:0000/0000/0000/c800 
+URxvt.background: rgba:0000/0000/0200/c800
 
 ## Urxvt extensions
 URxvt.perl-ext-common: default,clipboard,resize-font
