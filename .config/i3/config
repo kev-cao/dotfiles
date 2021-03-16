@@ -301,21 +301,18 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 # reload the configuration file
 # %%hotkey: Reload i3 config%%
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 # %%hotkey: Restart i3%%
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 # %%hotkey: Exit i3%%
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-
-# Audio controls (now provided by Plasma)
-# bindsym XF86AudioLowerVolume exec ~/audio.sh --down
-# bindsym XF86AudioRaiseVolume exec ~/audio.sh --up
-
 # >>> Lock Screen <<<
 # %%hotkey: Go to lockscreen.%%
-bindsym $mod+Escape exec betterlockscreen -l
+bindsym $mod+Escape exec ~/.scripts/i3lock.sh
 
 #--- Pulse Audio Controls ---#
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
