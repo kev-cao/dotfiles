@@ -206,7 +206,7 @@ label-connected-padding = 0
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = " %a %b %d"
 date-alt = " %m/%d/%Y"
@@ -215,7 +215,7 @@ time = %I:%M %p
 time-alt = %I:%M:%S %p
 
 label-font = 3
-label = "%date% λ %time%"
+label = "%{A2:i3-msg restart:}%date% λ %time%%{A}"
 
 [module/pulseaudio]
 type = internal/pulseaudio
