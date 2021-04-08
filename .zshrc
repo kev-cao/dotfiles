@@ -6,8 +6,7 @@
 #####################################################################
 # zsh Options
 ZSH=/usr/share/oh-my-zsh/
-ZSH_THEME="agnoster"
-source $ZSH/oh-my-zsh.sh
+ZSH_THEME="agnoster" source $ZSH/oh-my-zsh.sh
 
 SAVEHIST=1000
 
@@ -41,3 +40,11 @@ function gitac() {
   git add --all &&
     git commit -m "$1"
 }
+
+# Move dotfiles tag to current commit.
+function movetag() {
+  dotfiles push origin :refs/tags/"$1" &&
+    dotfiles tag -fa $1 &&
+      dotfiles push origin master --tags
+}
+

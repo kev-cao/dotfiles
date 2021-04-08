@@ -28,7 +28,7 @@ background-alt = #000000
 foreground = #000000
 foreground-alt = #000000
 primary = #000000
-secondary = #000000
+prefix-font = 3secondary = #000000
 alert = #B2535B
 
 monitor = ${env:MONITOR:}
@@ -84,14 +84,13 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-
-format-mounted-prefix = 
+format-mounted-prefix = " "
 
 label-mounted = %percentage_used%%
 label-mounted-padding = 0
 
 
-format-unmounted-prefix = 
+format-unmounted-prefix = " "
 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-padding = 0
@@ -179,7 +178,7 @@ interface = wlp3s0
 
 format-connected = <label-connected>
 
-format-connected-prefix = ""
+format-connected-prefix = "直 "
 format-connected-prefix-padding = 0
 
 label-connected = %essid%
@@ -187,7 +186,7 @@ label-connected-maxlen = 15
 
 format-disconnected = <label-disconnected>
 
-format-disconnected-prefix = ""
+format-disconnected-prefix = "睊 "
 
 label-disconnected = "DISCONNECTED"
 
@@ -198,7 +197,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-padding = 0
 
 label-connected = %local_ip%
@@ -216,24 +215,25 @@ time = %I:%M %p
 time-alt = %I:%M:%S %p
 
 label-font = 3
-label = "%date% | %time%"
+label = "%date% λ %time%"
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> 
+format-volume = <ramp-volume><label-volume> 
 
-format-volume-prefix =  
-format-volume-prefix-padding = 0
+ramp-volume-0 = " "
+ramp-volume-1 = "奔 "
+ramp-volume-2 = "墳 "
 
-label-volume = %{A3:pavucontrol:}%percentage%%%{A}
+label-volume = %percentage:0%%
 label-volume-padding = 0
 
-format-muted-prefix = 
-format-muted-prefix-padding = 0
-
+format-muted-prefix = "ﱝ "
 label-muted = mute
 label-muted-padding = 0
+
+click-middle = pavucontrol
 
 [module/battery]
 type = internal/battery

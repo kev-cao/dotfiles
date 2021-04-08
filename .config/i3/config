@@ -121,7 +121,7 @@ exec xrdb ~/.Xresources
 # Flameshot
 exec_always --no-startup-id flameshot
 # Wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/Wallpapers/oneplus.jpeg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/rice/background.png
 
 # Run polybar
 exec_always --no-startup-id ~/.scripts/polybar.sh &

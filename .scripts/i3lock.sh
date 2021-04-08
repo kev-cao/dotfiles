@@ -17,5 +17,6 @@ i3lock --blur=.1 --keyhlcolor=$green --bshlcolor=$orange \
   --greetertext="Enter the Password" --greetercolor=#FFFFFFAA \
   --greeterpos="x+w/2:y+h/2+r*1.5" --greetersize=24 \
   --veriftext="" --wrongtext="" --noinputtext="" \
+  --radius=85 --line-uses-inside --indicator --ignore-empty-password \
   --image="/home/kevin/Pictures/rice/lock.png" --centered \
-  --radius=85 --line-uses-inside --indicator --ignore-empty-password
+  -c 00000000
