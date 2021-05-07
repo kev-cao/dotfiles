@@ -25,5 +25,5 @@ export VISUAL=vim
 # Path Variables
 PATH="$JAVA_HOME/bin:$PATH"
 PATH="/home/kevin/.local/bin:$PATH"
-PATH="/$NPM_PACKAGES/bin:$PATH"
+PATH="$NPM_PACKAGES/bin:$PATH"
 MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
