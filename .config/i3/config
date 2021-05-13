@@ -44,6 +44,38 @@ set $ws10 workspace "10"
 # >>> Windows button <<<
 set $mod Mod4
 
+# Monitor bindings
+set $monitor_one DP-0
+set $monitor_two HDMI-0
+set $monitor_three eDP-1-1
+
+# Triple Monitor Setup (To stop, uncomment out outputs for monitor_three)
+$ws1 output $monitor_three
+$ws2 output $monitor_three
+$ws3 output $monitor_three
+
+$ws4 output $monitor_one
+$ws5 output $monitor_one
+$ws6 output $monitor_one
+
+$ws7 output $monitor_two
+$ws8 output $monitor_two
+$ws9 output $monitor_two
+
+# Dual Monitor Setup
+$ws1 output $monitor_one
+$ws2 output $monitor_one
+$ws3 output $monitor_one
+$ws4 output $monitor_one
+$ws5 output $monitor_one
+
+$ws6 output $monitor_two
+$ws7 output $monitor_two
+$ws8 output $monitor_two
+$ws9 output $monitor_two
+$ws10 output $monitor_two
+
+# If the above all fail, then defaults to single monitor setup.
 
 # -----------------------------------------------------
 # --------------- Setting up i3Gaps -------------------
