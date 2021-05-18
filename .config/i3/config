@@ -25,6 +25,9 @@ set $browser brave
 set $term urxvt
 set $fm ranger
 
+# >>> Scripts Location <<<
+set $scripts ~/.scripts/
+
 # -----------------------------------------------------
 # ------------ Workspace Configurations ---------------
 # -----------------------------------------------------
@@ -156,7 +159,7 @@ exec_always --no-startup-id flameshot
 exec_always --no-startup-id feh --bg-scale ~/Pictures/rice/background.png
 
 # Run polybar
-exec_always --no-startup-id ~/.scripts/polybar.sh &
+exec_always --no-startup-id $scripts/polybar.sh &
 
 # Compositor (Animations, Shadows, Transparency)
 exec_always --no-startup-id picom --vsync --experimental-backends
@@ -165,7 +168,7 @@ exec_always --no-startup-id picom --vsync --experimental-backends
 exec_always --no-startup-id dunst
 
 # Autorun my scripts
-exec_always --no-startup-id ~/.scripts/remap_keys.sh &
+exec_always --no-startup-id $scripts/remap_keys.sh &
 
 
 # -----------------------------------------------------
@@ -347,7 +350,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # >>> Lock Screen <<<
 # %%hotkey: Go to lockscreen.%%
-bindsym $mod+Escape exec ~/.scripts/i3lock.sh
+bindsym $mod+Escape exec $scripts/i3lock.sh
 
 #--- Pulse Audio Controls ---#
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
@@ -359,4 +362,11 @@ bindsym $mod+F4 exec sudo brightnessctl set +5% # increase screen brightness
 bindsym $mod+F3 exec sudo brightnessctl set 5%- # decrease screen brightness
 
 #-- Toggle Touchpad --#
-bindsym $mod+F10 exec bash ~/.scripts/touchpadOnOff.sh
+bindsym $mod+F10 exec bash $scripts/touchpadOnOff.sh
+
+#-- Dunst Notifications --#
+bindsym Control+space exec --no-startup-id dunstctl close
+bindsym Control+Shift+space exec --no-startup-id dunstctl close-all
+bindsym Control+grave exec --no-startup-id dunstctl history-pop
+bindsym Control+Shift+question exec --no-startup-id dunstctl context
+bindsym $mod+m exec --no-startup-id $scripts/toggle_dunst_and_notify.sh
