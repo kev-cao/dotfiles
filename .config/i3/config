@@ -365,8 +365,13 @@ bindsym $mod+F3 exec sudo brightnessctl set 5%- # decrease screen brightness
 bindsym $mod+F10 exec bash $scripts/touchpadOnOff.sh
 
 #-- Dunst Notifications --#
+# %%hotkey: Close last notification%%
 bindsym Control+space exec --no-startup-id dunstctl close
+# %%hotkey: Close all notifications%%
 bindsym Control+Shift+space exec --no-startup-id dunstctl close-all
+# %%hotkey: Show last notification%%
 bindsym Control+grave exec --no-startup-id dunstctl history-pop
+# %%hotkey: Show notification context menu%%
 bindsym Control+Shift+question exec --no-startup-id dunstctl context
+# %%hotkey: Toggle notifications%%
 bindsym $mod+m exec --no-startup-id $scripts/toggle_dunst_and_notify.sh
