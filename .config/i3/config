@@ -52,18 +52,18 @@ set $monitor_one DP-0
 set $monitor_two HDMI-0
 set $monitor_three eDP-1-1
 
-# Triple Monitor Setup (To stop, uncomment out outputs for monitor_three)
-$ws1 output $monitor_three
-$ws2 output $monitor_three
-$ws3 output $monitor_three
+# Triple Monitor Setup (To stop, uncomment out outputs for triple monitor)
+# $ws1 output $monitor_three
+# $ws2 output $monitor_three
+# $ws3 output $monitor_three
 
-$ws4 output $monitor_one
-$ws5 output $monitor_one
-$ws6 output $monitor_one
-
-$ws7 output $monitor_two
-$ws8 output $monitor_two
-$ws9 output $monitor_two
+# $ws4 output $monitor_one
+# $ws5 output $monitor_one
+# $ws6 output $monitor_one
+ 
+# $ws7 output $monitor_two
+# $ws8 output $monitor_two
+# $ws9 output $monitor_two
 
 # Dual Monitor Setup
 $ws1 output $monitor_one
@@ -366,9 +366,9 @@ bindsym $mod+F10 exec bash $scripts/touchpadOnOff.sh
 
 #-- Dunst Notifications --#
 # %%hotkey: Close last notification%%
-bindsym Control+space exec --no-startup-id dunstctl close
-# %%hotkey: Close all notifications%%
-bindsym Control+Shift+space exec --no-startup-id dunstctl close-all
+bindsym Control+Shift+space exec --no-startup-id dunstctl close
+# %hotkey: Close all notifications%
+# bindsym Control+Shift+space exec --no-startup-id dunstctl close-all
 # %%hotkey: Show last notification%%
 bindsym Control+grave exec --no-startup-id dunstctl history-pop
 # %%hotkey: Show notification context menu%%

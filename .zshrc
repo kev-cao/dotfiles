@@ -49,3 +49,15 @@ function movetag() {
       dotfiles push origin master --tags
 }
 
+# Update staging branch and come back to current branch.
+function update-staging() {
+  curr=`git branch --show-current`
+  git checkout staging
+  git pull
+  git checkout $curr
+}
+
+
+#####################################################################
+# ssh-agent
+eval $(keychain --quiet --agents ssh --eval id_rsa certik)

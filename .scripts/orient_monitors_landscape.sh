@@ -9,11 +9,11 @@ if [ $? = 0 ]; then
     xrandr --output DP-0 --left-of HDMI-0 --primary
     xrandr --output HDMI-0 --rotate normal
     # Dual monitor setup
-    # xrandr --output eDP-1-1 --off 
+    xrandr --output eDP-1-1 --off 
 
     # Dual monitor + laptop setup
-    xrandr --output eDP-1-1 --auto
-    xrandr --output eDP-1-1 --left-of DP-0
+    # xrandr --output eDP-1-1 --auto
+    # xrandr --output eDP-1-1 --left-of DP-0
   elif [[ CONNECTED_MONITORS -eq 1 ]]; then
     MONITOR_PORT=`xrandr -q | grep -E "(HDMI-0|DP-0) connected" | grep -E "HDMI-0|DP-0" --only-matching`
     xrandr --output eDP-1-1 --auto --primary

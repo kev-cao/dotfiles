@@ -7,6 +7,10 @@
 NPM_PACKAGES="${HOME}/.npm-packages"
 #####################################################################
 
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
 export kevcao="kevcao@silo.soic.indiana.edu"
 export oceandigital="root@134.122.126.99"
 export WINEARCH=win32

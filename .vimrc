@@ -37,8 +37,9 @@ let g:airline_symbols.linenr = ''
 
 
 " Colorscheme settings.
-" colorscheme space_vim_theme
+colorscheme mojave
 hi Normal ctermbg=NONE guibg=NONE
+hi NonText ctermbg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 hi LineNr term=bold cterm=NONE ctermfg=74 ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 hi Comment cterm=italic
@@ -55,3 +56,16 @@ let g:js_indent_log = 0
 
 " Disable clearing of clipboard.
 autocmd VimLeave * call system('echo' . shellescape(getreg('+')) . ' | xclip -selection clipboard')
+
+" Set vimtex compiling options.
+let g:vimtex_compiler_latexmk = {
+    \ 'options' : [
+    \    '-shell-escape',
+    \    '-verbose',
+    \    '-file-line-error',
+    \    '-synctex=1',
+    \    '-interaction=nonstopmode',
+    \ ],
+    \}
+
+let g:hindent_on_save = 1
