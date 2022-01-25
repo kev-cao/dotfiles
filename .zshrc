@@ -6,7 +6,8 @@
 #####################################################################
 # zsh Options
 ZSH=/usr/share/oh-my-zsh/
-ZSH_THEME="agnoster" source $ZSH/oh-my-zsh.sh
+ZSH_THEME="agnoster"
+source $ZSH/oh-my-zsh.sh
 
 SAVEHIST=1000
 
@@ -33,8 +34,7 @@ alias pulsesecure="sudo openconnect -b --cafile /etc/ssl/certs/ca-certificates.c
 alias liveserver="browser-sync start --server --files ."
 alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
 alias java8="/usr/lib/jvm/java-8-openjdk/bin/java"
-alias audit="cd ~/Documents/work/certik/audit-accelerator"
-
+alias audit="cd ~/Documents/work/certik/accelerator"
 
 # Git add all and commit with message.
 function gitac() {

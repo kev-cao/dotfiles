@@ -45,9 +45,9 @@ hi LineNr term=bold cterm=NONE ctermfg=74 ctermbg=NONE gui=NONE guifg=DarkGrey g
 hi Comment cterm=italic
 
 set relativenumber number
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set autoindent
 
@@ -69,3 +69,5 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 let g:hindent_on_save = 1
+
+let @d= 'f lvt(yO/**Function: pVypllv$:s/\%V./-/gA*/€ýa'
