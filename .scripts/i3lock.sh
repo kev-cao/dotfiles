@@ -9,14 +9,14 @@ white="#F5F5F555"
 blue="#54ACE399"
 
 
-i3lock --blur=.1 --keyhlcolor=$green --bshlcolor=$orange \
-  --ringcolor=$lightgrey --insidecolor=$darkgrey \
-  --ringwrongcolor=$red --insidewrongcolor=$darkgrey \
-  --ringvercolor=$blue --insidevercolor=$darkgrey \
-  --separatorcolor=$lightgrey \
-  --greetertext="Enter the Password" --greetercolor=#FFFFFFAA \
-  --greeterpos="x+w/2:y+h/2+r*1.5" --greetersize=24 \
-  --veriftext="" --wrongtext="" --noinputtext="" \
+i3lock --blur=.1 --keyhl-color=$green --bshl-color=$orange \
+  --ring-color=$lightgrey --inside-color=$darkgrey \
+  --ringwrong-color=$red --insidewrong-color=$darkgrey \
+  --ringver-color=$blue --insidever-color=$darkgrey \
+  --separator-color=$lightgrey \
+  --greeter-text="Enter the Password" --greeter-color=#FFFFFFAA \
+  --greeter-pos="x+w/2:y+h/2+r*1.5" --greeter-size=24 \
+  --verif-text="" --wrong-text="" --noinput-text="" \
   --radius=85 --line-uses-inside --indicator --ignore-empty-password \
   --image="/home/kevin/Pictures/rice/lock.png" --centered \
   -c 00000000

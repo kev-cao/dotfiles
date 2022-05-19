@@ -70,4 +70,4 @@ let g:vimtex_compiler_latexmk = {
 
 let g:hindent_on_save = 1
 
-let @d= 'f lvt(yO/**Function: pVypllv$:s/\%V./-/gA*/€ýa'
+let @d= '0f lvt(yO/**Function: pVypllv$:s/\%V./-/gA*/€ýa'

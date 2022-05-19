@@ -138,3 +138,5 @@ URxvt.iso14755_52: False
 ## Rofi Theming
 rofi.font: Monospace, Regular, 16
 rofi.color-enabled: true
+
+Xcursor.size: 16
