@@ -9,7 +9,16 @@ sudo yabai --load-sa
 # Automatically set focus to a window on window close
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
+
 # .. more yabai startup stuff
+yabai -m config external_bar all:$(sketchybar --query bar | jq .height):0
+yabai -m config mouse_follows_focus on
+
+# No padding
+yabai -m config top_padding 0
+yabai -m config bottom_padding 0
+yabai -m config left_padding 0
+yabai -m config right_padding 0
 
 #
 # for this to work you must configure sudo such that
