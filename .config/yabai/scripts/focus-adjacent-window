@@ -5,26 +5,40 @@ if [[ $1 == "west" ]]; then
   if yabai -m window --focus west; then
     exit 0
   fi
-  display=$(jq -nr \
-      --argjson display "$(yabai -m query --displays --display)" \
-      --argjson displays "$(yabai -m query --displays)" \
-      '$displays | sort_by(.frame.x + .frame.w / 2, .frame.y + .frame.h / 2) 
-      | nth(index(map(select(.id == $display.id))) - 1)
-      .index')
 elif [[ $1 == "east" ]]; then
   if yabai -m window --focus east; then
     exit 0
   fi
-  display=$(jq -nr \
-      --argjson display "$(yabai -m query --displays --display)" \
-      --argjson displays "$(yabai -m query --displays)" \
-      '$displays | sort_by(.frame.x + .frame.w / 2, .frame.y + .frame.h / 2) 
-      | reverse 
-      | nth(index(map(select(.id == $display.id))) - 1)
-      .index')
 else
   echo "Invalid option $1"
   exit 1
+fi
+
+displays=$(yabai -m query --displays)
+if [[ $(echo $displays | jq length) -le 1 ]]; then
+  exit 0
+fi
+
+if [[ $1 == "west" ]]; then
+  curr_display_idx=$(jq -nr \
+    --argjson display "$(yabai -m query --displays --display)" \
+    --argjson displays "$displays" \
+    '$displays | sort_by(.frame.x + .frame.w / 2, .frame.y + .frame.h / 2) 
+      | index(map(select(.id == $display.id)))')
+  if [[ $curr_display_idx == 0 ]]; then
+    exit 0
+  fi
+  display=$(jq -nr \
+      --argjson idx "$curr_display_idx" \
+      --argjson displays "$displays" \
+      '$displays | sort_by(.frame.x + .frame.w / 2, .frame.y + .frame.h / 2) 
+      | .[$idx - 1].index')
+else
+  display=$(jq -nr \
+      --argjson display "$(yabai -m query --displays --display)" \
+      --argjson displays "$displays" \
+      '$displays | sort_by(.frame.x + .frame.w / 2, .frame.y + .frame.h / 2) 
+      | .[index(map(select(.id == $display.id))) + 1].index')
 fi
 
 space=$(jq -nr \
