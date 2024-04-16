@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ $(yabai -m query --windows --window | jq '."is-floating"') == "true" ]]; then
+  eval $1
+else
+  eval $2
+fi
