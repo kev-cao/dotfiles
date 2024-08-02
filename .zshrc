@@ -1,63 +1,152 @@
-#
-# ~/.zshrc
-#
-# If not running interactively, don't do anything
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-#####################################################################
-# zsh Options
-ZSH=/usr/share/oh-my-zsh/
-ZSH_THEME="agnoster"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git tmux autojump zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
+
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOQUIT=false
+ZSH_TMUX_AUTOCONNECT=false
 source $ZSH/oh-my-zsh.sh
 
-SAVEHIST=1000
+# User configuration
 
-# Vim mode
-bindkey -v
+# export MANPATH="/usr/local/man:$MANPATH"
 
-#####################################################################
-# Wal
-(cat ~/.cache/wal/sequences &)
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-[[ $- != *i* ]] && return
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-#####################################################################
-# Aliases
-alias intellij='intellij-idea-ultimate-edition'
-alias rm='rm -i --preserve-root'
-alias ls='ls --color=auto'
-alias emacs='emacs -nw'
-alias dual='~/./.scripts/dual_monitor.sh'
-alias single='~/./.scripts/laptop_monitor.sh'
-alias landscape='~/./.scripts/orient_monitors_landscape.sh'
-alias portrait='~/./.scripts/orient_monitors_portrait.sh'
-alias pulsesecure="sudo openconnect -b --cafile /etc/ssl/certs/ca-certificates.crt --juniper --no-dtls https://vpn.iu.edu -u kevcao"
-alias liveserver="browser-sync start --server --files ."
-alias dotfiles='git --git-dir="$HOME/.dotfiles" --work-tree="$HOME"'
-alias java8="/usr/lib/jvm/java-8-openjdk/bin/java"
-alias audit="cd ~/Documents/work/certik/accelerator"
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Git add all and commit with message.
-function gitac() {
-  git add --all &&
-    git commit -m "$1"
+# pnpm
+export PNPM_HOME="/Users/kevin/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+export PATH="/opt/homebrew/bin:$PATH"
+# pnpm end
+#
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+alias vim="nvim"
+alias vi="nvim"
+alias crdb="cd $COCKROACH_ROOT"
+alias managed="cd $CR_MANAGED_ROOT"
+alias playground="cd /Users/kevin/go/src/playground"
+alias gce="${COCKROACH_ROOT}/scripts/gceworker.sh"
+
+function set_nvm() {
+  wd=$(pwd)
+  dir=""
+  case $wd in
+    ${COCKROACH_ROOT}* )
+      dir=$COCKROACH_ROOT
+      ;;
+    ${CR_MANAGED_ROOT}* )
+      dir=$CR_MANAGED_ROOT
+      ;;
+  esac
+  if [[ $dir != "" ]]; then
+      if [[ "$(cat $dir/.nvmrc)" != "$(node --version)" ]]; then
+        nvm use
+      fi
+  fi
 }
 
-# Move dotfiles tag to current commit.
-function movetag() {
-  dotfiles push origin :refs/tags/"$1" &&
-    dotfiles tag -fa $1 &&
-      dotfiles push origin master --tags
-}
-
-# Update staging branch and come back to current branch.
-function update-staging() {
-  curr=`git branch --show-current`
-  git checkout staging
-  git pull
-  git checkout $curr
-}
+chpwd_functions=( "set_nvm" )
 
 
-#####################################################################
-# ssh-agent
-eval $(keychain --quiet --agents ssh --eval id_rsa certik)
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kevin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kevin/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kevin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kevin/google-cloud-sdk/completion.zsh.inc'; fi
