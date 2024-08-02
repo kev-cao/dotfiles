@@ -1,5 +1,4 @@
 call plug#begin("~/.vim/plugged")
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'Mofiqul/vscode.nvim'
@@ -8,17 +7,7 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
-
 call plug#end()
-
-" File Tree
-lua << EOF
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.opt.termguicolors = true
-require('nvim-tree').setup()
-EOF
 
 nmap <silent> tt :NvimTreeToggle<CR>
 
@@ -63,21 +52,6 @@ let g:coc_global_extensions = [
   \  'coc-prettier',
   \  'coc-go',
   \ ]
-
-" Status Line
-lua << EOF
-require('lualine').setup({
-    options = {
-        theme = 'vscode'
-    }
-})
-require('vscode').setup({
-    transparent = true,
-    italic_comments = true
-})
-require('vscode').load()
-EOF
-
 
 " Standard Vim Setup
 syntax on
@@ -125,3 +99,11 @@ let g:vimtex_quickfix_ignore_filters = [
       \ ]
 " let g:vimtex_compiler_method = 'latexrun'
 let maplocalleader = ","
+
+augroup vimrc
+  " Remove all vimrc autocommands
+  autocmd!
+  au BufWritePost *.go silent! ! $COCKROACH_ROOT/bin/crlfmt -w -tab=2 <afile>
+augroup END
+
+lua require("init")
