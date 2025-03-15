@@ -28,7 +28,7 @@
 !/.config/flameshot/*
 !/.config/fontconfig/*
 !/.config/i3/*
-!/.config/nvim/*
+!/.config/nvim/**
 !/.config/picom/*
 !/.config/polybar/*
 !/.config/rofi/*
