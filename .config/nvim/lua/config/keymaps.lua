@@ -20,6 +20,24 @@ M.groups = {
 M.general = {
   keys = {
     {
+      '<C-w>t',
+      '<cmd>tabnew<CR>',
+      mode = { 'n', 'i', 'v' },
+      desc = 'Create new tab',
+    },
+    {
+      '<C-w>x',
+      '<cmd>tabclose<CR>',
+      mode = { 'n', 'i', 'v' },
+      desc = 'Close tab',
+    },
+    {
+      '<C-w>t',
+      '<cmd>tabnew<CR>',
+      mode = { 'n', 'i', 'v' },
+      desc = 'Create new tab',
+    },
+    {
       '<C-q>',
       '<cmd>tabn<CR>',
       mode = 'n',
@@ -34,25 +52,25 @@ M.general = {
     {
       '<S-Up>',
       '<cmd>resize +2<CR>',
-      mode = 'n',
+      mode = { 'n', 'i', 'v' },
       desc = 'Increase window height'
     },
     {
       '<S-Down>',
       '<cmd>resize -2<CR>',
-      mode = 'n',
+      mode = { 'n', 'i', 'v' },
       desc = 'Decrease window height'
     },
     {
       '<S-Right>',
       '<cmd>vertical resize +2<CR>',
-      mode = 'n',
+      mode = { 'n', 'i', 'v' },
       desc = 'Increase window width'
     },
     {
       '<S-Left>',
       '<cmd>vertical resize -2<CR>',
-      mode = 'n',
+      mode = { 'n', 'i', 'v' },
       desc = 'Decrease window width'
     },
     {
@@ -61,12 +79,40 @@ M.general = {
       hidden = true,
       mode = 'n'
     },
+    --[[
+    -- Removing this as it makes using LazyGit annoying.
+    -- ]
     {
       '<Esc><Esc>',
       '<C-\\><C-n>',
       mode = 't',
       desc = 'Exit terminal mode',
-    }
+    },
+    --]]
+    {
+      '<C-w>k',
+      '<cmd>wincmd k<CR>',
+      mode = 't',
+      desc = 'Switch to above window',
+    },
+    {
+      '<C-w>j',
+      '<cmd>wincmd j<CR>',
+      mode = 't',
+      desc = 'Switch to below window',
+    },
+    {
+      '<C-w>l',
+      '<cmd>wincmd l<CR>',
+      mode = 't',
+      desc = 'Switch to right window',
+    },
+    {
+      '<C-w>h',
+      '<cmd>wincmd h<CR>',
+      mode = 't',
+      desc = 'Switch to left window',
+    },
   }
 }
 
@@ -97,7 +143,25 @@ M.fzf = {
       desc = 'Search in project files'
     },
     {
-      '<leader>gb',
+      '<leader>sd',
+      '<cmd>FzfLua blines<CR>',
+      mode = 'n',
+      desc = 'Search in current buffer'
+    },
+    {
+      '<leader>sq',
+      '<cmd>FzfLua loclist<CR>',
+      mode = 'n',
+      desc = 'Search location list',
+    },
+    {
+      '<leader>s<S-q>',
+      '<cmd>FzfLua quickfix<CR>',
+      mode = 'n',
+      desc = 'Search quickfix list',
+    },
+    {
+      '<leader>gc',
       '<cmd>FzfLua git_branches<CR>',
       mode = 'n',
       desc = 'List git branches'
@@ -182,6 +246,12 @@ M.lsp = {
       '<cmd>FzfLua lsp_references<CR>',
       mode = 'n',
       desc = 'List references'
+    },
+    {
+      'gt',
+      '<cmd>FzfLua lsp_typedefs<CR>',
+      mode = 'n',
+      desc = 'Go to type definition'
     },
     {
       '<F2>',
@@ -400,12 +470,6 @@ M.code_companion = {
       mode = 'n',
       desc = 'Code companion actions',
     },
-    {
-      '<leader>aa',
-      '<cmd>CodeCompanionActions<CR>',
-      mode = 'n',
-      desc = 'Code companion actions',
-    },
   }
 }
 
@@ -442,6 +506,118 @@ M.nvim_possession = {
       end,
       mode = 'n',
       desc = 'Delete session'
+    }
+  }
+}
+
+M.neoscroll = {
+  keys = {
+    {
+      '<C-y>',
+      function()
+          require('neoscroll').scroll(-1, {
+            move_cursor = false,
+            easing = nil,
+            duration = 0,
+          })
+      end,
+      mode = { 'n', 'v', 'x' },
+      desc = 'Scroll up 1 line',
+    },
+    {
+      '<C-e>',
+      function()
+          require('neoscroll').scroll(1, {
+            move_cursor = false,
+            easing = nil,
+            duration = 0,
+          })
+      end,
+      mode = { 'n', 'v', 'x' },
+      desc = 'Scroll down 1 line',
+    }
+  }
+}
+
+M.copilot = {
+  keys = {
+    {
+      '<C-l>',
+      function()
+        local copilot = require('copilot.suggestion')
+        if copilot.is_visible() then
+          copilot.accept()
+        end
+      end,
+      mode = 'i',
+      desc = 'Accept Copilot suggestion'
+    },
+  }
+}
+
+M.fugitive = {
+  keys = {
+    {
+      -- Visual mode selection marks are only set AFTER leaving visual mode.
+      -- <Cmd> keeps you in the same mode, so we have to use : instead, which
+      -- exits you from visual mode.
+      '<leader>gl',
+      ":'<,'>GBrowse!<CR>",
+      mode = 'x',
+      desc = 'Copy GitHub URL for selection',
+    },
+  },
+}
+
+M.gitsigns = {
+  keys = {
+    {
+      '<leader>gs',
+      '<cmd>Gitsigns toggle_signs<CR>',
+      mode = 'n',
+      desc = 'Toggle show Git signs',
+    },
+    {
+      '<leader>gd',
+      '<cmd>Gitsigns toggle_word_diff<CR>',
+      mode = 'n',
+      desc = 'Toggle intra-line word-diff for this buffer',
+    },
+    {
+      '<leader>g<S-b>',
+      '<cmd>Gitsigns blame<CR>',
+      mode = 'n',
+      desc = 'Show Git blame',
+    },
+    {
+      '<leader>gb',
+      '<cmd>Gitsigns blame_line<CR>',
+      mode = 'n',
+      desc = 'Show Git blame for current line',
+    },
+  }
+}
+
+M.neoclip = {
+  keys = {
+    {
+      '<leader>sy',
+      function()
+        require('neoclip.fzf')()
+      end,
+      mode = 'n',
+      desc = 'Search clipboard history'
+    }
+  }
+}
+
+M.lazygit = {
+  keys = {
+    {
+      '<leader>gg',
+      '<cmd>LazyGit<CR>',
+      mode = 'n',
+      desc = 'Open LazyGit',
     }
   }
 }

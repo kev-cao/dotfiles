@@ -1,0 +1,25 @@
+## Dependencies
+
+- A lot of plugins required [patched fonts](https://www.nerdfonts.com/), so install them.
+- nvim-dap-go
+    - delve
+- copilot.vim
+    - curl
+- nvim-lspconfig
+    - All required language servers
+        - eslint
+        - typescript-language-server
+        - gopls
+        - node
+- nvim-treesitter
+    - C compiler
+    - libstdc++
+    - git
+    - tar/curl
+- fzf
+    - fzf
+    - ripgrep
+- neoclip
+    - sqlite3 if you want to use persistent history
+- lazygit
+    - lazygit cli program

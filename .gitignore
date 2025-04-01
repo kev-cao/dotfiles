@@ -44,3 +44,6 @@
 !/.vimrc
 !/.xinitrc
 !/.spacemacs
+
+/**/.DS_Store
+.config/nvim/pack

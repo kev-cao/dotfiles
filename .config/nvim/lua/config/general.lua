@@ -6,6 +6,7 @@ vim.g.use_fzf = true
 vim.g.use_treesitter_context = true
 vim.g.use_auto_pairs = true
 vim.g.use_fugitive = true
+vim.g.use_gitsigns = true
 vim.g.use_virtcolumn = false -- bug with covering text, waiting for https://github.com/xiyaowong/virtcolumn.nvim/pull/11
 vim.g.use_copilot = true
 vim.g.use_codecompanion = true
@@ -26,6 +27,12 @@ vim.g.use_nvim_test = true
 vim.g.use_noice = true
 vim.g.use_minipick = true
 vim.g.use_nvim_possession = true
+vim.g.use_mini_surround = true
+vim.g.use_neoclip = true
+vim.g.use_todo_comments = true
+vim.g.use_vim_sleuth = true
+vim.g.use_colorizer = true
+vim.g.use_lazygit = true
 
 vim.g.nvim_tree_width = 30
 

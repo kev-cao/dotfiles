@@ -38,7 +38,7 @@ require("lazy").setup({
 
 local keymaps = require('config.keymaps')
 for _, key in ipairs(keymaps.general.keys) do
-  vim.api.nvim_set_keymap(
+  vim.keymap.set(
     key.mode,
     key[1],
     key[2],

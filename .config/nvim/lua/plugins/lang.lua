@@ -67,6 +67,7 @@ return {
                 rangeVariableTypes = true,
               },
               completeUnimported = true,
+              deepCompletion = true,
               usePlaceholders = true,
               analyses = {
                 unusedparams = true,
@@ -84,6 +85,9 @@ return {
               },
             },
           },
+        },
+        clangd = {
+          filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
         }
       },
     },

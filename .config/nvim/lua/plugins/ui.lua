@@ -6,6 +6,16 @@ local keymaps = require('config.keymaps')
 
 return {
   {
+    'catgoose/nvim-colorizer.lua',
+    event = 'BufReadPre',
+    cond = function()
+      return func.check_global_var('use_colorizer', true, true)
+    end,
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
+  {
     'navarasu/onedark.nvim',
     lazy = false, -- load this during startup since it is our main plugin
     priority = 1000, -- make sure this is loaded before all other plugins
@@ -49,8 +59,30 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { 'filetype' },
-        lualine_y = { 'progress' },
+        lualine_x = {
+          {
+            require('noice').api.status.mode.get,
+            cond = require('noice').api.status.mode.has,
+            color = { fg = '#ff9e64' },
+          },
+          'filetype',
+        },
+        lualine_y = {
+          {
+            function()
+              local spinner = { '', '', '', '' }
+              return "Debugging... " .. spinner[os.date('%S') % #spinner + 1]
+            end,
+            cond = function()
+              if not package.loaded.dap then
+                return false
+              end
+              local session = require('dap').session()
+              return session ~= nil
+            end,
+          },
+          'progress',
+        },
         lualine_z = { 'location' }
       },
       inactive_sections = {
@@ -84,8 +116,10 @@ return {
   },
   {
     "karb94/neoscroll.nvim",
+    lazy = false,
+    keys = keymaps.neoscroll.keys,
     opts = {
-      mappings = { '<C-u>', '<C-d>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
+      mappings = { '<C-u>', '<C-d>', 'zt', 'zz', 'zb' },
       duration_multiplier = 0.5,
     },
     config = function(_, opts)

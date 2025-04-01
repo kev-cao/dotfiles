@@ -6,10 +6,14 @@ local keymaps = require('config.keymaps')
 
 return {
   {
-    dir = "~/nvim-possession",
+    'gennaro-tedesco/nvim-possession',
     dependencies = {
       'ibhagwan/fzf-lua',
     },
+
+    build = function()
+      os.execute("mkdir -p " .. vim.fn.stdpath('data') .. '/.sessions')
+    end,
     lazy = false,
     keys = keymaps.nvim_possession.keys,
     config = true,
@@ -19,10 +23,8 @@ return {
         sessions_icon = '󰦖 ',
       },
       autosave = true,
-      autoload = {
-        enable = true,
-        prompt = true,
-      },
+      autoload = true,
+      autoprompt = true,
       autoswitch = {
         enable = true,
       },
