@@ -3,9 +3,25 @@ local keymaps = require('config.keymaps')
 
 return {
   {
-    'github/copilot.vim',
+    'zbirenbaum/copilot.lua',
+    commit = '0e004a200537fe905a9a4ad7eb0ed1a2f1bb015d',
+    event = { 'InsertEnter' },
     cond = function()
       return func.check_global_var('use_copilot', true, true)
+    end,
+    keys = keymaps.copilot.keys,
+    opts = {
+      copilot_node_command = '/Users/kevin/.nodenv/versions/23.9.0/bin/node',
+      panel = {
+        enabled = false,
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+      }
+    },
+    config = function(_, opts)
+      require('copilot').setup(opts)
     end
   },
   {

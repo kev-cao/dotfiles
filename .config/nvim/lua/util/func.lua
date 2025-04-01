@@ -22,4 +22,11 @@ function M.get_plugin_if_loaded(plugin)
   return  false, nil
 end
 
+function string.capitalize(str)
+    if str=="" then return end
+    local first = str:sub(1,1)
+    local last = str:sub(2)
+    return first:upper()..last:lower()
+end
+
 return M

@@ -14,7 +14,6 @@ return {
       local has_luasnip, luasnip = pcall(require, 'luasnip')
       local opts = {
         mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping(function (fallback)
             if cmp.visible() then
@@ -35,8 +34,8 @@ return {
             else
                 fallback()
             end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif has_luasnip and luasnip.locally_jumpable(-1) then
@@ -44,7 +43,7 @@ return {
             else
                 fallback()
             end
-        end, { "i", "s" }),
+        end, { 'i', 's' }),
         }),
         snippet = {
           expand = function(args)
