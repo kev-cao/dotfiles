@@ -20,6 +20,11 @@ M.groups = {
 M.general = {
   keys = {
     {
+      '<leader>,',
+      ',',
+      mode = 'n',
+    },
+    {
       '<C-w>t',
       '<cmd>tabnew<CR>',
       mode = { 'n', 'i', 'v' },
