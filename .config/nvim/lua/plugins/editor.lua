@@ -3,6 +3,15 @@ local keymaps = require('config.keymaps')
 
 return {
   {
+    'windwp/nvim-ts-autotag',
+    cond = function()
+      return func.check_global_var('use_autotag', true, true)
+    end,
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
+  {
     'tpope/vim-sleuth',
     cond = function()
       return func.check_global_var('use_sleuth', true, true)

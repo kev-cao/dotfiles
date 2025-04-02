@@ -33,6 +33,7 @@ vim.g.use_todo_comments = true
 vim.g.use_vim_sleuth = true
 vim.g.use_colorizer = true
 vim.g.use_lazygit = true
+vim.g.use_autotag = true
 
 vim.g.nvim_tree_width = 30
 
