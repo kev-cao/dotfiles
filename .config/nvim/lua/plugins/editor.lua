@@ -50,7 +50,7 @@ return {
         info = { "DiagnosticInfo", "#54ACE3" },
         hint = { "DiagnosticHint", "#98C379" },
         default = { "#C678DD" },
-        test = { "Identifier", "#56B6C2" }
+        test = { "#56B6C2" }
       },
     },
     cond = function()

@@ -11,7 +11,7 @@ return {
     end,
     keys = keymaps.copilot.keys,
     opts = {
-      copilot_node_command = '/Users/kevin/.nvm/versions/node/v22.12.0/bin/node',
+      copilot_node_command = '/Users/kevin/.nodenv/versions/23.9.0/bin/node',
       panel = {
         enabled = false,
       },

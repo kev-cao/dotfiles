@@ -8,7 +8,6 @@ M.groups = {
   { '<leader>s', group = 'Search' },
   { '<leader>g', group = 'Git', icon = { icon = '', color = 'green' } },
   { '<leader>d', group = 'Debugger', icon = { icon = '󰨰', color = 'blue' } },
-  { '<leader>dt', group = 'Debug Tests', icon = { icon = '󰨰', color = 'blue' } },
   { '<leader><S-t>', group = 'Tests', icon = { icon = '', color = 'blue' } },
   { '<leader>t', group = 'Terminal' },
   { '<leader>l', group = 'LSP', icon = { icon = '', color = 'red' } },
