@@ -6,34 +6,9 @@
 #     like `!.config` `.config/*` instead of just `!.config`.
 /**
 
-# Lets Git track gitignore
 !/.gitignore
-
-
-# Let Git track all parent directories.
-!/.config/
-!/.config/dunst/
-!/.config/flameshot/
-!/.config/fontconfig/
-!/.config/i3/
-!/.config/nvim/
-!/.config/picom/
-!/.config/polybar/
-!/.config/rofi/
-!/.config/ranger/
-!/.scripts/
-
-# Then let Git track the files in the directories.
-!/.config/dunst/*
-!/.config/flameshot/*
-!/.config/fontconfig/*
-!/.config/i3/*
-!/.config/nvim/**
-!/.config/picom/*
-!/.config/polybar/*
-!/.config/rofi/*
-!/.config/ranger/*
-!/.scripts/*
+!/.config/**/*
+!/.scripts/**/*
 !/.bash_functions
 !/.bash_aliases
 !/.bash_ps1
@@ -42,8 +17,6 @@
 !/.zshenv
 !/.Xresources
 !/.vimrc
-!/.xinitrc
-!/.spacemacs
+!/.tmux.conf
 
 /**/.DS_Store
-.config/nvim/pack
