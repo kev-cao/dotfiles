@@ -1,4 +1,0 @@
-#!/bin/bash
-
-yabai -m display --focus $(yabai -m query --spaces --space $1 | jq .display)
-yabai -m window --focus "$(yabai -m query --spaces --space $1 | jq -r '."first-window"')" || yabai -m space --focus $1
