@@ -15,6 +15,7 @@
 !/.bashrc
 !/.zshrc
 !/.zshenv
+!/.zsh_functions
 !/.Xresources
 !/.vimrc
 !/.tmux.conf

@@ -1,0 +1,147 @@
+# git-clear function to delete all branches except master and specified exclusions
+git-clear() {
+  local excludes=("master")  # Always exclude master
+  local branches_to_delete
+  local branch
+  local OPTARG OPTIND opt
+
+  # Parse options
+  while getopts "e:" opt; do
+    case $opt in
+      e) excludes+=("$OPTARG") ;;
+      *) echo "Usage: git-clear [-e branch] (multiple -e options allowed)"; return 1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  # Get all branches excluding master and specified exclusions
+  branches_to_delete=($(git branch --format='%(refname:short)' | grep -vE "$(IFS='|'; echo "${excludes[*]}")"))
+
+  if [[ ${#branches_to_delete[@]} -eq 0 ]]; then
+    echo "No branches to delete."
+    return 0
+  fi
+
+  # Confirm deletion
+  echo "The following branches will be deleted:"
+  printf '%s\n' "${branches_to_delete[@]}"
+  read -q "REPLY?Proceed? (y/n) "
+  echo
+  if [[ $REPLY != "y" ]]; then
+    echo "Aborted."
+    return 0
+  fi
+
+  # Delete branches
+  for branch in "${branches_to_delete[@]}"; do
+    git branch -D "$branch"
+  done
+}
+
+# Proper Zsh autocompletion function for `git-clear`
+_git-clear() {
+  local branches
+  branches=($(git branch --format='%(refname:short)'))
+
+  _arguments -C \
+    '(-e)--e[Exclude branch]:branch name:->branches' \
+    '*-e[Exclude branch]:branch name:->branches'
+
+  case $state in
+    branches)
+      compadd "${branches[@]}"
+      ;;
+  esac
+}
+
+# Register completion function for `git-clear`
+compdef _git-clear git-clear
+
+
+##################################
+######### CockroachLabs ##########
+##################################
+if [[ "$_PROFILE" != "cockroachlabs" ]]; then
+  exit 0
+fi
+
+function decode_backup_manifest() {
+  query="WITH x AS (SHOW BACKUP FROM '$1' IN '$2' WITH as_json) SELECT jsonb_pretty(manifest) AS f FROM x LIMIT 1;"
+  if [ -n "$3" ]; then
+    query="WITH x AS (SHOW BACKUP FROM '$1' IN '$2' WITH as_json) SELECT jsonb_pretty(manifest) AS f FROM x OFFSET $3 LIMIT 1;"
+  fi
+  cockroach demo --no-example-database --sql-port 14234 --http-port 13244 --format raw -e "$query" | tail -n +4 | ghead -n -1 | jq
+}
+
+function decode_key() {
+  cockroach demo --no-example-database --sql-port 14235 --http-port 13245 --format raw -e "SELECT crdb_internal.pretty_key(decode('$1', 'base64'), 0);" | tail -n +4 | ghead -n -1
+}
+
+function crdbproto() {
+  if [[ "$1" == "-h" || "$1" == "--help" || -z $1 || -z $2 ]]; then
+    echo "Usage: crdbproto <proto_file> <message_type>"
+    echo "Example: crdbproto backup/backuppb/backup.proto BackupManifest"
+    echo ""
+    echo "Automatically infers package name from proto file. Reads from stdin."
+    return 0
+  fi
+
+  local proto_file="$1"
+  local message="$2"
+  local full_path="$COCKROACH_ROOT/pkg/$proto_file"
+
+  if [[ ! -f "$full_path" ]]; then
+    echo "Error: File not found: $full_path"
+    return 1
+  fi
+
+  # Extract the package name from the proto file
+  local package
+  package=$(rg '^package ' "$full_path" | sed -E 's/^package ([^;]+);/\1/')
+
+  if [[ -z "$package" ]]; then
+    echo "Error: Could not extract package name from $proto_file"
+    return 1
+  fi
+
+  local full_message="${package}.${message}"
+
+  protoc \
+    -I "$COCKROACH_ROOT/pkg" \
+    -I "$COCKROACH_ROOT/vendor/github.com/cockroachdb/errors" \
+    -I "$COCKROACH_ROOT/vendor/github.com/gogo/protobuf" \
+    -I "$COCKROACH_ROOT/vendor/github.com/gogo/googleapis/google/rpc" \
+    --decode="$full_message" "$proto_file" < /dev/stdin
+}
+
+# _crdbproto completion function
+_crdbproto() {
+  local context state line
+  typeset -A opt_args
+
+  _arguments -C \
+    '1:proto file:->proto_file' \
+    '2:message type:->message_type' \
+    && return 0
+
+  case $state in
+    proto_file)
+      local proto_files
+      proto_files=(${(f)"$(rg --files --glob '*.proto' --glob '!**/node_modules/**' "$COCKROACH_ROOT/pkg")"})
+      proto_files=(${proto_files[@]#$COCKROACH_ROOT/pkg/})
+      _values 'proto files' $proto_files
+      ;;
+
+    message_type)
+      local selected_file="$words[2]"
+      local full_path="$COCKROACH_ROOT/pkg/$selected_file"
+
+      if [[ -f "$full_path" ]]; then
+        local messages
+        messages=(${(f)"$(rg '^message ' "$full_path" | awk '{print $2}' | sed 's/{//')"})
+        _values 'message types' $messages
+      fi
+      ;;
+  esac
+}
+compdef _crdbproto crdbproto
