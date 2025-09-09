@@ -53,14 +53,13 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
   alias gce="${COCKROACH_ROOT}/scripts/gceworker.sh"
   alias playground="cd /Users/kevin/go/src/playground"
   source $CR_MANAGED_ROOT/scripts/autocomplete.sh
+  eval "$(nodenv init - zsh)"
 fi
 
 if type fzf > /dev/null; then
   source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
   source /opt/homebrew/opt/fzf/shell/completion.zsh
 fi
-
-eval "$(nodenv init - zsh)"
 
 if [ -f "$HOME/.zsh_functions" ]; then
   source "$HOME/.zsh_functions"
