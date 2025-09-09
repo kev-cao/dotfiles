@@ -62,7 +62,7 @@ compdef _git-clear git-clear
 ######### CockroachLabs ##########
 ##################################
 if [[ "$_PROFILE" != "cockroachlabs" ]]; then
-  exit 0
+  return 0
 fi
 
 function decode_backup_manifest() {
