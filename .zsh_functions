@@ -1,3 +1,4 @@
+########### git-clear #############
 # git-clear function to delete all branches except master and specified exclusions
 git-clear() {
   local excludes=("master")  # Always exclude master
@@ -57,6 +58,210 @@ _git-clear() {
 # Register completion function for `git-clear`
 compdef _git-clear git-clear
 
+
+########## playground #############
+# --- playground command + completion ---
+playground() {
+  local base="$HOME/playground"
+  local base_pretty="~/playground"
+
+  # Ensure base exists (create with log)
+  if [[ ! -d "$base" ]]; then
+    echo "Creating $base_pretty..."
+    mkdir -p "$base" || { echo "Error: could not create $base_pretty"; return 1; }
+  fi
+
+  _pg_help() {
+    cat <<'EOF'
+Usage:
+  playground                   # cd to ~/playground
+  playground PATH              # cd to ~/playground/PATH (prompt to create missing tail)
+  playground -d [-r] PATH...   # delete one or more PATHs under ~/playground
+  playground -h                # show this help
+
+Details:
+  -d PATH...  Delete the given PATH(s) under ~/playground. Files are removed directly.
+              Directories require -r. Each non-empty directory prompts:
+                "Deleting <num> files in <path>. Confirm? (Y/n)"
+              Empty directories (0 files, even with empty subdirs) are removed without prompting.
+  -r          With -d, allows deleting directories recursively.
+Notes:
+  • PATH is always relative to ~/playground (no leading slash, no '..').
+  • The default command creates ~/playground if needed.
+EOF
+  }
+
+  # Parse options
+  local opt_delete=0 opt_recursive=0
+  local OPTIND=1 opt
+  while getopts ":hdr" opt; do
+    case "$opt" in
+      h) _pg_help; return 0 ;;
+      d) opt_delete=1 ;;
+      r) opt_recursive=1 ;;
+      \?) echo "Error: unknown option -$OPTARG. Try 'playground -h'."; return 1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+
+  _pg_guard() {
+    local rel="$1"
+    if [[ "$rel" == /* || "$rel" == *".."* ]]; then
+      echo "Error: path must be relative to $base_pretty and must not contain '..'."
+      return 1
+    fi
+    return 0
+  }
+
+  if (( opt_delete )); then
+    if [[ $# -lt 1 ]]; then
+      echo "Error: -d requires at least one PATH. Try 'playground -h'."
+      return 1
+    fi
+    local exit_code=0
+    local rel target num reply
+    for rel in "$@"; do
+      _pg_guard "$rel" || { exit_code=1; continue; }
+      rel="${rel#/}"
+      target="$base/$rel"
+
+      if [[ ! -e "$target" ]]; then
+        echo "Error: '$rel' does not exist in $base_pretty."
+        exit_code=1
+        continue
+      fi
+
+      if [[ -d "$target" ]]; then
+        if (( ! opt_recursive )); then
+          echo "Error: '$rel' is a directory. Use -r to delete recursively."
+          exit_code=1
+          continue
+        fi
+        # Count files under the directory
+        num=$(find "$target" -type f 2>/dev/null | wc -l | tr -d '[:space:]')
+        if [[ "$num" -eq 0 ]]; then
+          rm -rf -- "$target" || { echo "Error: failed to delete directory '$rel'."; exit_code=1; continue; }
+          echo "Deleted empty directory '$rel'."
+        else
+          printf "Deleting %s files in %s. Confirm? (Y/n) " "$num" "$rel"
+          read -r reply; reply="${reply:-Y}"
+          case "$reply" in
+            [Yy]* )
+              rm -rf -- "$target" || { echo "Error: failed to delete directory '$rel'."; exit_code=1; continue; }
+              echo "Deleted directory '$rel'."
+              ;;
+            * )
+              echo "Skipped '$rel'."
+              ;;
+          esac
+        fi
+      else
+        rm -f -- "$target" || { echo "Error: failed to delete '$rel'."; exit_code=1; continue; }
+        echo "Deleted '$rel'."
+      fi
+    done
+    return "$exit_code"
+  fi
+
+  # cd mode
+  if [[ $# -eq 0 ]]; then
+    cd "$base" || return 1
+    return 0
+  fi
+
+  if [[ $# -gt 1 ]]; then
+    echo "Error: too many arguments. Provide exactly one PATH for navigation (use -d to delete multiple)."
+    return 1
+  fi
+
+  local rel="$1"
+  _pg_guard "$rel" || return 1
+  rel="${rel#/}"
+  local dest="$base/$rel"
+
+  if [[ -d "$dest" ]]; then
+    cd "$dest" || return 1
+    return 0
+  fi
+
+  # Find deepest existing ancestor within ~/playground
+  local ancestor="$dest"
+  while [[ ! -d "$ancestor" && "$ancestor" != "$base" ]]; do
+    ancestor="$(dirname "$ancestor")"
+  done
+
+  local missing="${dest#"$ancestor"/}"
+  local parent_rel="${ancestor#"$base"}"
+  parent_rel="${parent_rel#/}"
+  local display_parent="/"
+  [[ -n "$parent_rel" ]] && display_parent="/$parent_rel"
+
+  printf "%s does not exist. Create directory %s in %s (Y/n)? " "$rel" "$missing" "$display_parent"
+  local reply; read -r reply; reply="${reply:-Y}"
+  case "$reply" in
+    [Yy]* )
+      mkdir -p "$dest" || { echo "Error: could not create '$missing' in $display_parent"; cd "$ancestor" || true; return 1; }
+      cd "$dest" || return 1
+      ;;
+    * )
+      cd "$ancestor" || return 1
+      ;;
+  esac
+}
+
+#compdef playground
+
+# _playground — completion for the `playground` command.
+# Behavior:
+#   - No -d: complete directories only (cd-like) under ~/playground; only 1 arg
+#   - With -d (no -r): complete non-directories (rm-like) under ~/playground; multiple args
+#   - With -d and -r: complete files AND directories (rm -r-like); multiple args
+_playground() {
+  local -A opt_args
+  local state
+  local base_dir="$HOME/playground"
+
+  _arguments -C -s \
+    '-d[delete the specified target(s) (rm-like)]' \
+    '-r[recurse into directories (use with -d)]' \
+    '1:target within ~/playground:->path' \
+    '*:additional target(s):->more' && return
+
+  local _complete_cd_like() {
+    # directories only
+    _files -W "$base_dir" -/
+  }
+
+  local _complete_rm_like() {
+    # if -r is present, allow dirs too; otherwise exclude dirs
+    if (( $+opt_args[-r] )); then
+      _files -W "$base_dir"
+    else
+      # match anything that's NOT a directory (symlinks, sockets, etc. included)
+      _files -W "$base_dir" -g '*(^/)'
+    fi
+  }
+
+  case $state in
+    path)
+      if (( $+opt_args[-d] )); then
+        _complete_rm_like
+      else
+        _complete_cd_like
+      fi
+      ;;
+    more)
+      if (( $+opt_args[-d] )); then
+        _complete_rm_like
+      else
+        _message 'no more arguments (use -d to delete multiple targets)'
+        return 1
+      fi
+      ;;
+  esac
+}
+
+compdef _playground playground
 
 ##################################
 ######### CockroachLabs ##########
