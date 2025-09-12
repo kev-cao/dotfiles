@@ -51,7 +51,6 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
   alias crdb="cd $COCKROACH_ROOT"
   alias managed="cd $CR_MANAGED_ROOT"
   alias gce="${COCKROACH_ROOT}/scripts/gceworker.sh"
-  alias playground="cd /Users/kevin/go/src/playground"
   source $CR_MANAGED_ROOT/scripts/autocomplete.sh
   eval "$(nodenv init - zsh)"
 fi
