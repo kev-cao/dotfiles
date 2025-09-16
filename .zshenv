@@ -1,4 +1,3 @@
-
 export _PROFILE="cockroachlabs"
 
 export GOPATH=$HOME/go
@@ -12,7 +11,7 @@ fi
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-if [ "$MAC_OS" = true ]; then
+if [ $MAC_OS -eq 1 ]; then
   export PATH="/opt/homebrew/bin:$PATH"
   export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/coreutils/bin":$PATH

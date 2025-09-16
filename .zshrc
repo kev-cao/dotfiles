@@ -1,3 +1,8 @@
+MAC_OS=0
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  MAC_OS=1
+fi
+
 ##################################
 ########## oh-my-zsh #############
 ##################################
@@ -58,8 +63,13 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
 fi
 
 if type fzf > /dev/null; then
-  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
-  source /opt/homebrew/opt/fzf/shell/completion.zsh
+  if [ $MAC_OS -eq 1 ]; then
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+    source /opt/homebrew/opt/fzf/shell/completion.zsh
+  else
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+  fi
 fi
 
 if [ -f "$HOME/.zsh_functions" ]; then
