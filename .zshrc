@@ -52,7 +52,9 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
   alias managed="cd $CR_MANAGED_ROOT"
   alias gce="${COCKROACH_ROOT}/scripts/gceworker.sh"
   source $CR_MANAGED_ROOT/scripts/autocomplete.sh
-  eval "$(nodenv init - zsh)"
+  if [ -x "$(command -v nodenv)" ]; then
+    eval "$(nodenv init - zsh)"
+  fi
 fi
 
 if type fzf > /dev/null; then
