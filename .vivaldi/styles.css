@@ -1,0 +1,21 @@
+#browser.isblurred.dim-blurred .button-toolbar.button-toolbar-webpanel button[title*="github.com"] .button-icon.favicon {
+  filter: brightness(250%) opacity(65%) !important;
+}
+.button-toolbar.button-toolbar-webpanel button[title*="github.com"] .button-icon.favicon {
+  filter: brightness(250%);
+}
+
+#browser.isblurred.dim-blurred .button-toolbar.button-toolbar-webpanel button[title*="glean.com"] .button-icon.favicon {
+  filter: grayscale(1) brightness(1.8) opacity(65%) !important;
+}
+.button-toolbar.button-toolbar-webpanel button[title*="glean.com"] .button-icon.favicon {
+  content: url(https://cdn.prod.website-files.com/6127a84dfe068e153ef20572/6718d143017623de8f42a270_Glean%20Icon%20-%20Circular%20-%20White.webp);
+  filter: grayscale(1) brightness(1.8);
+}
+
+#browser.isblurred.dim-blurred .toolbar-extensions .button-toolbar button[title*="Okta"] .button-icon {
+  filter: invert(1) brightness(40%) opacity(65%) !important;
+}
+.toolbar-extensions .button-toolbar button[title*="Okta"] .button-icon {
+  filter: invert(1) brightness(40%);
+}
