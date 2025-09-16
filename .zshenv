@@ -42,7 +42,9 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
 
   export VAULT_ADDR="https://127.0.0.1:8201"
   export VAULT_CACERT="${CR_MANAGED_ROOT}/pkg/config/vault.staging.ca.crt.pem"
-  export VAULT_TOKEN="$(cat ~/.vault-token.staging)"
+  if [ -f ~/.vault-token.staging ]; then
+    export VAULT_TOKEN="$(cat ~/.vault-token.staging)"
+  fi
   # Claude code setup
   export CLAUDE_CODE_USE_VERTEX=1
   export CLOUD_ML_REGION=us-east5
