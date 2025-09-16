@@ -18,6 +18,12 @@ else;
 fi
 ZSH_TMUX_AUTOCONNECT=true
 
+# Don't use tmux on GCEWorker
+if [[ $(whoami) == "kevin_cao_cockroachlabs_com" ]]; then
+  ZSH_TMUX_AUTOSTART=false
+  ZSH_TMUX_AUTOCONNECT=false
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 ##################################
