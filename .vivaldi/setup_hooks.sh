@@ -55,7 +55,7 @@ mkdir -p "$HOOKS_DIR"
 rm -rf "${HOOKS_DIR:?}/"* 2>/dev/null || true
 # Copy all .js from your local js/ into custom_hooks/
 # (copy everything so main.js can import others by relative path)
-cp -p "${JS_DIR}/"*.js "$HOOKS_DIR"/
+cp -rp "${JS_DIR}/"* "$HOOKS_DIR"/
 
 # --------- Build injection block (single tag to custom_hooks/main.js) ----------
 # Use a RELATIVE path so it resolves from window.html: "custom_hooks/main.js"
