@@ -1,3 +1,7 @@
+import { overrideConsole } from "./internal.js";
+
+const console = overrideConsole("calendar-util");
+
 /**
  * Watches for new calendar events and calls the callback with the event element
  * each time the calendar page changes.
