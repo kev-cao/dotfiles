@@ -5,22 +5,23 @@ const console = overrideConsole("gmeet-link");
 
 const updateCalendarEvent = (el) => {
   const eventHeader = el.querySelector(".cal-event-header");
-  if (eventHeader.querySelector(".cal-event-gmeet")) {
-    console.debug("skipping event, gmeet link already added");
+  if (eventHeader.querySelector(".cal-event-vmeet")) {
+    console.debug("skipping event, vmeet link already added");
     return;
   }
 
   const title = el.getAttribute("title") ?? "";
-  const gmeetPattern = /https:\/\/meet\.google\.com\/[a-zA-Z0-9-]+/gi;
-  const matches = title.match(gmeetPattern);
+  const vmeetPattern =
+    /(https:\/\/meet\.google\.com\/[a-zA-Z0-9-]+)|(https:\/\/[^\s.]+\.zoom\.\w+\/\w\/\d+)/gi;
+  const matches = title.match(vmeetPattern);
 
   if (!matches || matches.length === 0) {
-    console.debug("skipping event, no gmeet link found");
+    console.debug("skipping event, no vmeet link found");
     return;
   }
 
   const gmeetEl = document.createElement("span");
-  gmeetEl.className = "cal-event-gmeet";
+  gmeetEl.className = "cal-event-vmeet";
 
   // Create anchor element
   const gmeetLink = matches[0];

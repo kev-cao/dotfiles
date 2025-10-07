@@ -1,7 +1,7 @@
 import calEventRoom from "./cal-event-room.js";
-import calEventGmeet from "./gmeet-link.js";
+import calEventVmeet from "./vmeet-link.js";
 
-const registry = [calEventRoom, calEventGmeet];
+const registry = [calEventRoom, calEventVmeet];
 
 function waitForApp() {
   return new Promise((resolve) => {
