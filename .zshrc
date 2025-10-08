@@ -56,6 +56,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias nvimedit="nvim ~/.config/nvim"
 alias cl="clear"
+alias bell="echo -e '\a'"
 
 # CockroachLabs Setup
 if [ "$_PROFILE" = "cockroachlabs" ]; then
