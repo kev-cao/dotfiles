@@ -263,6 +263,12 @@ _playground() {
 
 compdef _playground playground
 
+# Fetches all Go test function names from a given Go source file and creates a
+# pipe-separated string.
+function gofile_tests() {
+  sed -n 's/^func \(Test[^(]*\).*/\1/p' $1 | tr '\n' '|' | sed 's/|$//'
+}
+
 ##################################
 ######### CockroachLabs ##########
 ##################################
