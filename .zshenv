@@ -1,7 +1,9 @@
-export _PROFILE="cockroachlabs"
+export _PROFILE="personal"
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
+export EDITOR=nvim
+export XDG_CONFIG_HOME=$HOME/.config
 
 MAC_OS=0
 if [[ "$OSTYPE" == "darwin"* ]]; then
