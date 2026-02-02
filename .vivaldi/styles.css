@@ -14,8 +14,8 @@
 }
 
 #browser.isblurred.dim-blurred .toolbar-extensions .button-toolbar button[title*="Okta"] .button-icon {
-  filter: invert(1) brightness(40%) opacity(65%) !important;
+  filter: invert(1) brightness(100%) opacity(65%) !important;
 }
 .toolbar-extensions .button-toolbar button[title*="Okta"] .button-icon {
-  filter: invert(1) brightness(40%);
+  filter: invert(1) brightness(100%);
 }
