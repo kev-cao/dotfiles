@@ -1,4 +1,8 @@
-export _PROFILE="personal"
+if [ -f "$HOME/.zshenv_secure" ]; then
+  source "$HOME/.zshenv_secure"
+fi
+
+export _PROFILE="${_PROFILE:-personal}"
 
 export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
@@ -55,8 +59,4 @@ fi
 
 if [ -f $HOME/.cargo/env ]; then
   . "$HOME/.cargo/env"
-fi
-
-if [ -f "$HOME/.zshenv_secure" ]; then
-  source "$HOME/.zshenv_secure"
 fi
