@@ -18,6 +18,7 @@ plugins=(
   colored-man-pages
   tmux
   autojump
+  you-should-use
   zsh-history-substring-search
   zsh-autosuggestions
   zsh-syntax-highlighting
