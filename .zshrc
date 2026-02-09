@@ -8,8 +8,22 @@ fi
 ##################################
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
+if [[ -z "$ZSH_CUSTOM" ]]; then
+    ZSH_CUSTOM="$ZSH/custom"
+fi
 
-plugins=(git tmux autojump zsh-history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(
+  git
+  autoupdate
+  tmux
+  autojump
+  zsh-history-substring-search
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(replace-string)
 
 if [[ $TERMINAL_EMULATOR != "JetBrains-JediTerm" ]]; then
   ZSH_TMUX_AUTOSTART=true
@@ -34,10 +48,23 @@ export TMUX_POWERLINE_THEME=my-theme
 ##################################
 ########### terminal #############
 ##################################
+bindkey -v
+
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+autoload -Uz replace-string replace-string-again
+zle -N replace-string
+zle -N replace-string-again
+bindkey '^X^R' replace-string
+bindkey '^X^N' replace-string-again
+
+bindkey '^X^T' transpose-words
+bindkey '^[Enter' accept-and-hold
+bindkey '^Q' push-line
+
+bindkey '^ ' autosuggest-accept
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 

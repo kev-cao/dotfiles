@@ -34,6 +34,7 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
   export PATH="$PATH:$CR_MANAGED_ROOT/bin"
   export PATH="$PATH:$CR_MANAGED_ROOT/console/migrations"
   export PATH="$PATH:$HOME/playground/scripts/replication/bin"
+  export PATH="$PATH:$HOME/scripts"
   export NODE_PATH="${COCKROACH_ROOT}/pkg/ui/workspaces/cluster-ui/node_modules"
   export PNPM_HOME="/Users/kevin/Library/pnpm"
   case ":$PATH:" in
