@@ -15,6 +15,7 @@ fi
 plugins=(
   git
   autoupdate
+  colored-man-pages
   tmux
   autojump
   zsh-history-substring-search
