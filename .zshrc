@@ -32,7 +32,13 @@ if [[ $TERMINAL_EMULATOR != "JetBrains-JediTerm" ]]; then
 else;
   ZSH_TMUX_AUTOQUIT=false
 fi
+
 ZSH_TMUX_AUTOCONNECT=true
+
+# On my arch install, I want terminal instances on separate tmux sessions.
+if [[ $(uname -n) == "archlinux" ]]; then
+  ZSH_TMUX_AUTOCONNECT=false
+fi
 
 # Don't use tmux on GCEWorker
 if [[ $(whoami) == "kevin_cao_cockroachlabs_com" ]]; then
@@ -108,8 +114,13 @@ if type fzf > /dev/null; then
     source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
     source /opt/homebrew/opt/fzf/shell/completion.zsh
   else
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
+    if [[ -f /usr/share/doc/fzf/ ]]; then
+      source /usr/share/doc/fzf/examples/key-bindings.zsh
+      source /usr/share/doc/fzf/examples/completion.zsh
+    elif [[ -f /usr/share/fzf ]]; then
+      source /usr/share/fzf/key-bindings.zsh
+      source /usr/share/fzf/completion.zsh
+    fi
   fi
 fi
 

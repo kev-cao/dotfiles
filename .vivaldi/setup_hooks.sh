@@ -4,7 +4,7 @@ set -euo pipefail
 
 # --------- Require sudo (editing inside /Applications) ----------
 if [[ ${EUID:-$(id -u)} -ne 0 ]]; then
-  echo "This script modifies files under /Applications; please run with: sudo $0" >&2
+  echo "This script modifies files; please run with: sudo $0" >&2
   exit 1
 fi
 
@@ -17,7 +17,10 @@ for tool in perl find cp mkdir rm; do
 done
 
 # --------- Paths ----------
-VIVALDI_HTML="/Applications/Vivaldi.app/Contents/Frameworks/Vivaldi Framework.framework/Versions/Current/Resources/vivaldi/window.html"
+VIVALDI_HTML=/opt/vivaldi/resources/vivaldi/window.html
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  VIVALDI_HTML="/Applications/Vivaldi.app/Contents/Frameworks/Vivaldi Framework.framework/Versions/Current/Resources/vivaldi/window.html"
+fi
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &>/dev/null && pwd )"
 JS_DIR="${SCRIPT_DIR}/js"                 # your source JS folder (next to this script)
 # custom_hooks lives alongside window.html
