@@ -8,6 +8,7 @@ export GOPATH=$HOME/go
 export GOROOT=/usr/local/go
 export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 MAC_OS=0
 if [[ "$OSTYPE" == "darwin"* ]]; then
