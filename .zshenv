@@ -16,6 +16,7 @@ fi
 
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 if [ $MAC_OS -eq 1 ]; then
   export PATH="/opt/homebrew/bin:$PATH"
