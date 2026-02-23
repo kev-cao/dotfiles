@@ -1,0 +1,13 @@
+Config (
+  y: Fraction(0.3),
+  close_on_click: true,
+  plugins: [
+    "libapplications.so",
+    "libsymbols.so",
+    "libshell.so",
+    "libtranslate.so",
+    "libdictionary.so",
+    "libwebsearch.so",
+    "librink.so",
+  ],
+)
