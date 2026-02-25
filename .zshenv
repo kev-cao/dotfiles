@@ -1,5 +1,5 @@
-if [ -f "$HOME/.zshenv_secure" ]; then
-  source "$HOME/.zshenv_secure"
+if [ -f "$HOME/.zshenv_local" ]; then
+  source "$HOME/.zshenv_local"
 fi
 
 export _PROFILE="${_PROFILE:-personal}"
