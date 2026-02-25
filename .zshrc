@@ -40,8 +40,8 @@ if [[ $(uname -n) == "archlinux" ]]; then
   ZSH_TMUX_AUTOCONNECT=false
 fi
 
-# Don't use tmux on GCEWorker
-if [[ $(whoami) == "kevin_cao_cockroachlabs_com" ]]; then
+# Don't use tmux when connecting via SSH
+if [[ -n $SSH_CONNECTION ]]; then
   ZSH_TMUX_AUTOSTART=false
   ZSH_TMUX_AUTOCONNECT=false
 fi
