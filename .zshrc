@@ -98,6 +98,12 @@ alias nvimedit="nvim ~/.config/nvim"
 alias cl="clear"
 alias bell="echo -e '\a'"
 
+# Because I have stupidly deleted ~ twice now, this is here to protect me from
+# myself.
+if (( $+commands[safe-rm] )); then
+  alias rm=safe-rm
+fi
+
 # CockroachLabs Setup
 if [ "$_PROFILE" = "cockroachlabs" ]; then
   alias crdb="cd $COCKROACH_ROOT"
