@@ -1,4 +1,5 @@
 @define-color background #f1dcb9;
+@define-color background-alt #fcf2e1;
 @define-color text #000;
 @define-color text-inverse #fff;
 @define-color green #61b477;
@@ -24,6 +25,18 @@ window#waybar {
 
 window#waybar.hidden {
     opacity: 0.2;
+}
+
+tooltip {
+    border-radius: 10px;
+    padding: 5px 10px;
+    opacity: 0.8;
+    text-shadow: none;
+    background-color: @background-alt;
+}
+
+tooltip * {
+    color: @text;
 }
 
 .modules-left {
