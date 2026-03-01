@@ -1,3 +1,16 @@
+@define-color background #f1dcb9;
+@define-color text #000;
+@define-color text-inverse #fff;
+@define-color green #61b477;
+@define-color olive #a19853;
+@define-color teal #799781;
+@define-color sky-blue #89b2c6;
+@define-color blue #619eb4;
+@define-color yellow #efb756;
+@define-color orange #d97a3a;
+@define-color red #c06348;
+@define-color purple #A88bc2;
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
@@ -5,11 +18,11 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    border-radius: 15px;
     transition-property: background-color;
     transition-duration: .5s;
+    color: @text;
+    background-color: @background;
 }
 
 window#waybar.hidden {
@@ -45,18 +58,14 @@ button {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
-}
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
 }
 
 #workspaces button {
+    margin: 5px 0;
+    font-weight: bold;
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: @text;
 }
 
 #workspaces button:hover {
@@ -64,8 +73,12 @@ button:hover {
 }
 
 #workspaces button.active {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    border-radius: 10px;
+    padding-right: 8px;
+    padding-left: 10px;
+    transition: padding 0.1s ease-in-out;
+    background-color: @sky-blue;
+    color: @text-inverse;
 }
 
 #workspaces button.urgent {
@@ -94,8 +107,10 @@ button:hover {
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
+    margin: 4px 0;
+    border-radius: 10px;
     padding: 0 10px;
-    color: #ffffff;
+    color: @text-inverse;
 }
 
 #window,
@@ -114,54 +129,14 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    background-color: @purple;
 }
 
 @keyframes blink {
     to {
         background-color: #ffffff;
-        color: #000000;
+        color: @text;
     }
-}
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#power-profiles-daemon {
-    padding-right: 15px;
-}
-
-#power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
-}
-
-#power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
 }
 
 label:focus {
@@ -169,38 +144,34 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: @green;
+    color: @text;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: @purple;
 }
 
 #disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
+    background-color: @orange;
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: @teal;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: @red;
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: @yellow;
+    color: @text;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: @orange;
+    color: @text-inverse;
 }
 
 #wireplumber {
@@ -227,11 +198,11 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: @orange;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: @red;
 }
 
 #tray {
@@ -324,4 +295,24 @@ label:focus {
 
 #privacy-item.audio-out {
     background-color: #0069d4;
+}
+
+#custom-launcher {
+    border-radius: 15px;
+    margin: 5px 0 3px 10px;
+    padding-right: 18px;
+    padding-left: 16px;
+    background-color: @blue;
+    color: @text-inverse;
+}
+
+#custom-power {
+    font-size: 20px;
+    border-radius: 30;
+    margin: 5px 10px 5px 0;
+    margin-right: 10px;
+    padding-left: 9px;
+    padding-right: 8px;
+    color: @text-inverse;
+    background-color: @red;
 }
