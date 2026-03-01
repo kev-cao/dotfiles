@@ -97,7 +97,8 @@ button:hover {
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background-color: @background-alt;
+    border-radius: 8px;
 }
 
 #workspaces button.active {
