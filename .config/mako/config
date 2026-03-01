@@ -1,1 +1,4 @@
 default-timeout=8000
+background-color=#799781ee
+padding=10
+border-radius=10
