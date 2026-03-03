@@ -99,7 +99,7 @@
         "format-alt": "{:%m-%d-%Y}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "{usage}% ",
         "tooltip": false,
         "on-click": "wezterm -e --class custom-floating -- htop -s PERCENT_CPU",
     },
