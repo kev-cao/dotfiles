@@ -27,16 +27,21 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-tooltip {
+tooltip, menu {
     border-radius: 10px;
     padding: 5px 10px;
-    opacity: 0.8;
+    opacity: 0.9;
     text-shadow: none;
     background-color: @background-alt;
 }
 
-tooltip * {
+tooltip *, menuitem {
     color: @text;
+}
+
+menuitem:hover {
+    border-radius: 8px;
+    background-color: @background;
 }
 
 .modules-left {
@@ -55,24 +60,6 @@ tooltip * {
     padding-left: 12px;
     padding-right: 8px;
     background-color: @background;
-}
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
 }
 
 button {
