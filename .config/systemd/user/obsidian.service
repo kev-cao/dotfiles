@@ -8,7 +8,6 @@ StartLimitBurst=4
 
 [Service]
 Type=simple
-User=kevin
 ExecStart=/home/kevin/.nvm/versions/node/v23.10.0/bin/ob sync --continuous --path /home/kevin/documents/obsidian
 Environment="PATH=/home/kevin/.nvm/versions/node/v23.10.0/bin:/usr/local/bin:/usr/bin:/bin"
 Restart=on-failure

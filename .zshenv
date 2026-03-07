@@ -4,10 +4,9 @@ fi
 
 export _PROFILE="${_PROFILE:-personal}"
 
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/go
 export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DOWNLOAD_DIR=$HOME/downloads
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 MAC_OS=0
@@ -15,7 +14,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   MAC_OS=1
 fi
 
-export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:/usr/local/go/bin"
+if (( $+commands[go] )); then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 
