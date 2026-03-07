@@ -1,0 +1,7 @@
+[Unit]
+Description=Notify Obsidian Sync Failure
+
+[Service]
+Type=oneshot
+ExecStart=notify-send "Obsidian Sync Failed" "obsidian.service has failed repeatedly. Please check the service status for more details."
+Environment="DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"
