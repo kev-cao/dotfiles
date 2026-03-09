@@ -16,7 +16,8 @@ fi
 
 export PATH="$PATH:/usr/local/go/bin"
 if (( $+commands[go] )); then
-  export PATH="$PATH:$(go env GOPATH)/bin"
+  export GOPATH="$(go env GOPATH)"
+  export PATH="$PATH:$GOPATH/bin"
 fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
