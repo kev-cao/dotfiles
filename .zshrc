@@ -76,6 +76,23 @@ bindkey '^ ' autosuggest-accept
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
+# Change cursor shape depending on vi mode.
+zle-keymap-select () {
+  if [ $KEYMAP = vicmd ]; then
+    printf "\033[2 q"
+  else
+    printf "\033[6 q"
+  fi
+}
+zle -N zle-keymap-select
+
+zle-line-init () {
+  zle -K viins
+  printf "\033[6 q"
+}
+zle -N zle-line-init
+bindkey -v
+
 ##################################
 ########## completions ###########
 ##################################
