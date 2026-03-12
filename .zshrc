@@ -115,6 +115,16 @@ alias nvimedit="nvim ~/.config/nvim"
 alias cl="clear"
 alias bell="echo -e '\a'"
 
+if [ "$_PROFILE" = "cockroachlabs" ]; then
+  if (( $+commands[roachdev] )); then
+    opts=""
+    if (( ! $+commands[terminal-notifier] )); then
+      opts="--notify=none"
+    fi
+    alias claude="roachdev claude $opts --"
+  fi
+fi
+
 # Because I have stupidly deleted ~ twice now, this is here to protect me from
 # myself.
 if (( $+commands[safe-rm] )); then
