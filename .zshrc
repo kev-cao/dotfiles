@@ -56,7 +56,7 @@ export TMUX_POWERLINE_THEME=my-theme
 ##################################
 ########### terminal #############
 ##################################
-export TERM=xterm-256color-italic
+export TERM=xterm-256color
 bindkey -v
 
 autoload -U edit-command-line
