@@ -1,10 +1,10 @@
 [Default Applications]
 text/terminal=org.wezfurlong.wezterm.desktop
-x-scheme-handler/http=vivaldi-snapshot.desktop
-x-scheme-handler/https=vivaldi-snapshot.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
 x-scheme-handler/chrome=zen.desktop
 x-scheme-handler/terminal=org.wezfurlong.wezterm.desktop
-text/html=vivaldi-snapshot.desktop
+text/html=zen.desktop
 application/x-extension-htm=zen.desktop
 application/x-extension-html=zen.desktop
 application/x-extension-shtml=zen.desktop
@@ -19,3 +19,4 @@ x-scheme-handler/unknown=vivaldi-snapshot.desktop
 x-scheme-handler/http=zen.desktop;
 x-scheme-handler/https=zen.desktop;
 x-scheme-handler/chrome=zen.desktop;
+text/html=zen.desktop;
