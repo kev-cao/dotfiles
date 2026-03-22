@@ -10,7 +10,6 @@ export XDG_DOWNLOAD_DIR=$HOME/downloads
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # Set up input method environment variables for fcitx
-export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
