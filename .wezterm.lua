@@ -19,7 +19,7 @@ config.keys = {
     mods = "SUPER",
     action = wezterm.action.DisableDefaultAssignment,
   },
-  { key = "v", mods = "CTRL", action = wezterm.action.PasteFrom "Clipboard" },
+  { key = "v", mods = "CTRL|SHIFT", action = wezterm.action.PasteFrom "Clipboard" },
   {
     key = "-",
     mods = "CTRL",
