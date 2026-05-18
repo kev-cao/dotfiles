@@ -62,7 +62,7 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
   fi
   # Claude code setup
   export CLAUDE_CODE_USE_VERTEX=1
-  export CLOUD_ML_REGION=us-east5
+  export CLOUD_ML_REGION=global
   export ANTHROPIC_VERTEX_PROJECT_ID=vertex-model-runners
 
   export GOOGLE_CLOUD_PROJECT=vertex-model-runners
