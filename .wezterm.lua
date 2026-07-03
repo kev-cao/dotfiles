@@ -4,6 +4,7 @@ local config = {}
 local custom_onedark = wezterm.color.get_builtin_schemes()["One Dark (Gogh)"]
 custom_onedark.foreground = "#ABB2BF"
 
+config.enable_wayland = false
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "NONE"
 config.color_schemes = {

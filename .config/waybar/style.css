@@ -11,7 +11,6 @@
 @define-color orange #d97a3a;
 @define-color red #c06348;
 @define-color purple #A88bc2;
-
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
@@ -325,11 +324,12 @@ label:focus {
 }
 
 #custom-power {
-    font-size: 20px;
+    font-size: 14px;
     border-radius: 30;
     margin: 5px 5px 5px 0;
     padding-left: 9px;
     padding-right: 8px;
+    padding-top: 4px;
     color: @text-inverse;
     background-color: @red;
 }

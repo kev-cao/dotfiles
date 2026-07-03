@@ -94,9 +94,15 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "format": "{:%b %e %I:%M %p}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%m-%d-%Y}"
+        "format": "{:%b %e | %I:%M %p}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+        "format-alt": "{:%m-%d-%Y}",
+        "calendar": {
+            "format": {
+                "months": "",
+                "today": "<span color='#000'><b>{}</b></span>"
+            }
+        }
     },
     "cpu": {
         "format": "{usage}% ",
@@ -191,16 +197,16 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
     "custom/power": {
-        "format" : "⏻",
-		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
+        "format" : "<span size='12000'>⏻</span>",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
     },
     "custom/launcher": {
         "format": "󰣇",
