@@ -60,8 +60,8 @@ compdef _git-clear git-clear
 
 
 ########## playground #############
-# --- playground command + completion ---
-playground() {
+# --- pg command + completion ---
+pg() {
   local base="$HOME/playground"
   local base_pretty="~/playground"
 
@@ -74,10 +74,10 @@ playground() {
   _pg_help() {
     cat <<'EOF'
 Usage:
-  playground                   # cd to ~/playground
-  playground PATH              # cd to ~/playground/PATH (prompt to create missing tail)
-  playground -d [-r] PATH...   # delete one or more PATHs under ~/playground
-  playground -h                # show this help
+  pg                   # cd to ~/playground
+  pg PATH              # cd to ~/playground/PATH (prompt to create missing tail)
+  pg -d [-r] PATH...   # delete one or more PATHs under ~/playground
+  pg -h                # show this help
 
 Details:
   -d PATH...  Delete the given PATH(s) under ~/playground. Files are removed directly.
@@ -99,7 +99,7 @@ EOF
       h) _pg_help; return 0 ;;
       d) opt_delete=1 ;;
       r) opt_recursive=1 ;;
-      \?) echo "Error: unknown option -$OPTARG. Try 'playground -h'."; return 1 ;;
+      \?) echo "Error: unknown option -$OPTARG. Try 'pg -h'."; return 1 ;;
     esac
   done
   shift $((OPTIND - 1))
@@ -115,7 +115,7 @@ EOF
 
   if (( opt_delete )); then
     if [[ $# -lt 1 ]]; then
-      echo "Error: -d requires at least one PATH. Try 'playground -h'."
+      echo "Error: -d requires at least one PATH. Try 'pg -h'."
       return 1
     fi
     local exit_code=0
@@ -211,12 +211,12 @@ EOF
 
 #compdef playground
 
-# _playground — completion for the `playground` command.
+# pg — completion for the `pg` command.
 # Behavior:
 #   - No -d: complete directories only (cd-like) under ~/playground; only 1 arg
 #   - With -d (no -r): complete non-directories (rm-like) under ~/playground; multiple args
 #   - With -d and -r: complete files AND directories (rm -r-like); multiple args
-_playground() {
+_pg() {
   local -A opt_args
   local state
   local base_dir="$HOME/playground"
@@ -261,7 +261,7 @@ _playground() {
   esac
 }
 
-compdef _playground playground
+compdef _pg pg
 
 # Fetches all Go test function names from a given Go source file and creates a
 # pipe-separated string.
