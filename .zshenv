@@ -8,6 +8,7 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DOWNLOAD_DIR=$HOME/downloads
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export OBSIDIAN_VAULT_PATH=${OBSIDIAN_VAULT_PATH:-$HOME/Documents/obsidian}
 
 # Set up input method environment variables for fcitx
 export QT_IM_MODULE=fcitx
@@ -53,7 +54,7 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
 
   export GCEWORKER_ZONE="us-east4-b"
   export CLUSTER="kevincao-test"
-  export AWS_PROFILE="CRLStagingAdmin"
+  export AWS_PROFILE="CRLShared"
 
   export VAULT_ADDR="https://127.0.0.1:8201"
   export VAULT_CACERT="${CR_MANAGED_ROOT}/pkg/config/vault.staging.ca.crt.pem"
