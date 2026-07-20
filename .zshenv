@@ -35,7 +35,7 @@ if [ $MAC_OS -eq 1 ]; then
 fi
 
 if [ "$_PROFILE" = "cockroachlabs" ]; then
-  export COCKROACH_ROOT="$GOPATH/src/github.com/cockroachdb/cockroach"
+  export COCKROACH_ROOT="$GOPATH/src/github.com/cockroachlabs/cockroach"
   export CR_MANAGED_ROOT="$GOPATH/src/github.com/cockroachlabs/managed-service"
   export MSO_REPO_DIR="$GOPATH/src/github.com/cockroachlabs/managed-service"
 
