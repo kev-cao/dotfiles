@@ -116,6 +116,10 @@ alias cl="clear"
 alias bell="echo -e '\a'"
 alias obs="cd ${OBSIDIAN_VAULT_PATH} && vi ."
 
+if [ $MAC_OS -ne 1 ]; then
+  alias open="xdg-open"
+fi
+
 if [ "$_PROFILE" = "cockroachlabs" ]; then
   if (( $+commands[roachdev] )); then
     opts=""
