@@ -8,7 +8,6 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DOWNLOAD_DIR=$HOME/downloads
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-export OBSIDIAN_VAULT_PATH=${OBSIDIAN_VAULT_PATH:-$HOME/Documents/obsidian}
 
 # Set up input method environment variables for fcitx
 export QT_IM_MODULE=fcitx
@@ -32,6 +31,9 @@ if [ $MAC_OS -eq 1 ]; then
   export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
   export PATH="/opt/homebrew/opt/coreutils/bin":$PATH
   export PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.11/bin"
+  export OBSIDIAN_VAULT_PATH=$HOME/Documents/obsidian
+else
+  export OBSIDIAN_VAULT_PATH=$HOME/documents/obsidian
 fi
 
 if [ "$_PROFILE" = "cockroachlabs" ]; then
