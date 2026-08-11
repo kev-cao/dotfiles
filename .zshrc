@@ -127,6 +127,7 @@ if [ "$_PROFILE" = "cockroachlabs" ]; then
       opts="--notify=none"
     fi
     alias claude="roachdev claude $opts --"
+    alias safeclaude="roachdev claude $opts --safe --"
   fi
 fi
 
