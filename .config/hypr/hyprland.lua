@@ -291,6 +291,8 @@ hl.bind(mainMod .. " + SHIFT + y", hl.dsp.exec_cmd("cliphist list | anyrun --sho
 
 hl.bind(mainMod .. " + SHIFT + o", hl.dsp.window.set_prop({ prop = "opaque", value = "toggle", window = "active" }), { description = "Toggle window transparency" })
 
+hl.bind(mainMod .. " + SHIFT + d", hl.dsp.exec_cmd("/usr/lib/hyprwhspr/config/hyprland/hyprwhspr-tray.sh record"), { description = "Toggle dictation" })
+
 hl.window_rule({
     name = "workspace10",
     match = {
