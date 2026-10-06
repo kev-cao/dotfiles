@@ -5,6 +5,7 @@ fi
 export _PROFILE="${_PROFILE:-personal}"
 
 export EDITOR=nvim
+export PICTURES_FOLDER=$HOME/pictures
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DOWNLOAD_DIR=$HOME/downloads
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
