@@ -1,6 +1,6 @@
 # Check if connected via SSH and dynamically set the host prefix
 if [[ -n "$SSH_CLIENT" || -n "$SSH_TTY" || -n "$SSH_CONNECTION" ]]; then
-  PROMPT="[%m] "
+  PROMPT="[ssh] "
 else
   PROMPT=""
 fi
