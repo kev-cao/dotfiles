@@ -7,7 +7,7 @@ fi
 ########## oh-my-zsh #############
 ##################################
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussel-updated"
 if [[ -z "$ZSH_CUSTOM" ]]; then
     ZSH_CUSTOM="$ZSH/custom"
 fi
